@@ -1,7 +1,7 @@
 
-##### HotSpot3D temporary repository for ENSC 453
+## HotSpot3D 
 
-Temporary README.
+A temporary repository for ENSC 453.
 
 ### Execution
 
