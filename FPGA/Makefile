@@ -1,8 +1,8 @@
-CC = gcc
+CC = g++
 CFLAGS = -Wall -O3
 LDFLAGS =
 
-SRC = 3dHLS.c  # Add more source files if needed
+SRC = 3dHLS.cpp  # Add more source files if needed
 OBJ = $(SRC:.c=.o)
 EXECUTABLE = 3dhls
 
