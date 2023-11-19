@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -O3
 LDFLAGS =
 
-SRC = main.c 3dHLS.c  # Add more source files if needed
+SRC = 3dHLS.c  # Add more source files if needed
 OBJ = $(SRC:.c=.o)
 EXECUTABLE = 3dhls
 
