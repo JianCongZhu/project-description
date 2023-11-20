@@ -18,12 +18,17 @@
 
 
 
+float t_chip = 0.0005;
+float chip_height = 0.016; float chip_width = 0.016; 
+/* ambient temperature, assuming no package at all	*/
+float amb_temp = 80.0;
+
 void buffer_load(float *dest, float *source, int numRows, int numCols)
 {
     memcpy(dest, source, sizeof(float) * 3 * numRows * numCols);
 }
 
-void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS * GRID_COLS], float cn, float cs, float ce, float cw, float ct, float cb)
+void compute(float result_buf[numRows * numCols], float temp_buf[numRows * numCols], float power_buf[numRows * numCols], float cn, float cs, float ce, float cw, float ct, float cb, int numRows, int numCols)
 {
 
     int x, y, z;
@@ -75,7 +80,7 @@ void hotspot(float* result, float* temp, float* power, int numCols, int numRows,
             buffer_load(temp_buf, temp + 3 * numRows * numCols * j, numRows, numCols);
             buffer_load(power_buf, power + 3 * numRows * numCols * j, numRows, numCols);
             compute(result_buf, temp_buf, power_buf, cn, cs, ce, cw, ct, cb);
-            buffer_store(temp + numRows * numCols * j, result_buf, numRows, numCols)
+            buffer_store(temp + numRows * numCols * j, result_buf, numRows, numCols);
         }
     }
 
