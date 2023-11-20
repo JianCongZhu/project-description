@@ -1,9 +1,9 @@
 #ifndef _3DHLS_H
 #define _3DHLS_H
 
-#define GRID_ROWS 512
-#define GRID_COLS 512
-#define LAYERS 64
+#define GRID_ROWS 64
+#define GRID_COLS 64
+#define LAYERS 8
 #define ITERATIONS 100
 
 void usage(int argc, char **argv);
