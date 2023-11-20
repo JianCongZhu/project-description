@@ -28,7 +28,7 @@ void buffer_load(float *dest, float *source)
 }
 
 void compute(float *result_buf, float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
-             float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt)
+             float power_buf[GRID_ROWS * GRID_COLS], int cc, int cn, int cs, int ce, int cw, int ct, int cb, int Cap, int dt)
 {
 
   int x, y, z;
