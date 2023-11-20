@@ -74,15 +74,102 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
     {
         for (j = 0; j < LAYERS; j++)
         {
-            buffer_load(temp_buf, temp + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS);
-            buffer_load(power_buf, power + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS);
-            compute(result_buf, temp_buf, power_buf, cc, cn, cs, ce, cw, ct, cb);
-            buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf, GRID_ROWS, GRID_COLS);
+            buffer_load(temp_buf, temp + 3 * GRID_ROWS * GRID_COLS * j);
+            buffer_load(power_buf, power + 3 * GRID_ROWS * GRID_COLS * j);
+            compute(result_buf, temp_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt);
+            buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf);
         }
     }
 
     return;
 }
+
+void fatal(char *s)
+
+{
+
+    fprintf(stderr, "Error: %s\n", s);
+
+}
+
+
+
+void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file) {
+
+    int i,j,k;
+
+    FILE *fp;
+
+    char str[STR_SIZE];
+
+    float val;
+
+
+
+    if( (fp  = fopen(file, "r" )) ==0 )
+
+      fatal( "The file was not opened" );
+
+
+
+
+
+    for (i=0; i <= grid_rows-1; i++) 
+
+      for (j=0; j <= grid_cols-1; j++)
+
+        for (k=0; k <= layers-1; k++)
+
+          {
+
+            if (fgets(str, STR_SIZE, fp) == NULL) fatal("Error reading file\n");
+
+            if (feof(fp))
+
+              fatal("not enough lines in file");
+
+            if ((sscanf(str, "%f", &val) != 1))
+
+              fatal("invalid file format");
+
+            vect[i*grid_cols+j+k*grid_rows*grid_cols] = val;
+
+          }
+
+
+
+    fclose(fp);	
+
+
+
+}
+
+
+void usage(int argc, char **argv)
+
+{
+
+    fprintf(stderr, "Usage: %s <rows/cols> <layers> <iterations> <powerFile> <tempFile> <outputFile>\n", argv[0]);
+
+    fprintf(stderr, "\t<rows/cols>  - number of rows/cols in the grid (positive integer)\n");
+
+    fprintf(stderr, "\t<layers>  - number of layers in the grid (positive integer)\n");
+
+
+
+    fprintf(stderr, "\t<iteration> - number of iterations\n");
+
+    fprintf(stderr, "\t<powerFile>  - name of the file containing the initial power values of each cell\n");
+
+    fprintf(stderr, "\t<tempFile>  - name of the file containing the initial temperature values of each cell\n");
+
+    fprintf(stderr, "\t<outputFile - output file\n");
+
+    exit(1);
+
+}
+
+
 
 int main(int argc, char **argv)
 {
