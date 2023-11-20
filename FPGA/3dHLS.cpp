@@ -24,7 +24,7 @@ float amb_temp = 80.0;
 
 void buffer_load(float *dest, float *source)
 {
-    memcpy(dest, source, sizeof(float) * 3 * GRID_ROWS * GRID_COLS);
+    memcpy(dest, source, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
 
 void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS * GRID_COLS], float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt)
@@ -44,6 +44,17 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS *
             s = (y == GRID_COLS - 1) ? c : c + GRID_ROWS;
             b = (z == 0) ? c : c - GRID_ROWS * GRID_COLS;
             t = (z == LAYERS - 1) ? c : c + GRID_ROWS * GRID_COLS;
+            //printf("here inside the compute\n");
+            // float first = temp_buf[c] * cc;
+            // float second = temp_buf[n] * cn;
+            // float third = temp_buf[s] * cs;
+            // float fourth = temp_buf[e] * ce;
+            // float fifth = temp_buf[w] * cw;
+            // float sixth = temp_buf[t] * ct;
+            // float seventh = temp_buf[b] * cb;
+            // float eighth = (dt / Cap) * power_buf[c];
+            // float ninth = ct * amb_temp;
+            //printf("here inside the compute2\n");
 
             result_buf[c] = temp_buf[c] * cc + temp_buf[n] * cn + temp_buf[s] * cs + temp_buf[e] * ce + temp_buf[w] * cw + temp_buf[t] * ct + temp_buf[b] * cb + (dt / Cap) * power_buf[c] + ct * amb_temp;
         }
@@ -69,16 +80,23 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
     float temp_buf[3 * GRID_ROWS * GRID_COLS];
     float power_buf[3 * GRID_ROWS * GRID_COLS];
     float result_buf[GRID_ROWS * GRID_COLS];
-
+    
     for (i = 0; i < ITERATIONS; i++)
     {
         for (j = 0; j < LAYERS; j++)
         {
-            buffer_load(temp_buf, temp + 3 * GRID_ROWS * GRID_COLS * j);
-            buffer_load(power_buf, power + 3 * GRID_ROWS * GRID_COLS * j);
+            //printf("layer = %d\n", j);
+            buffer_load(temp_buf, temp + 1 * GRID_ROWS * GRID_COLS * j);
+            //printf("here after load 1\n");
+            
+            buffer_load(power_buf, power + 1 * GRID_ROWS * GRID_COLS * j);
+            //printf("here after load 2\n");
             compute(result_buf, temp_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt);
+            //printf("here after compute\n");
             buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf);
+            //printf("here after store\n");
         }
+        
     }
 
     return;
@@ -221,7 +239,13 @@ int main(int argc, char **argv)
     memcpy(tempCopy, tempIn, size * sizeof(float));
 
     // Invoke the top-level-entity
+    
     hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
+
+    free(powerIn);
+    free(tempIn);
+    free(tempCopy);
+    free(answer);
     printf("Top-Level Entity has ran\n");
 
     return 0;
