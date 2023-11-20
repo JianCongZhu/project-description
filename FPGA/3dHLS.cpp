@@ -162,6 +162,27 @@ void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file
 
 }
 
+void writeoutput(float *vect, int grid_rows, int grid_cols, int layers, char *file) {
+
+    int i,j,k, index=0;
+    FILE *fp;
+    char str[STR_SIZE];
+
+    if( (fp = fopen(file, "w" )) == 0 )
+      printf( "The file was not opened\n" );
+
+    for (i=0; i < grid_rows; i++) 
+      for (j=0; j < grid_cols; j++)
+        for (k=0; k < layers; k++)
+          {
+            sprintf(str, "%d\t%g\n", index, vect[i*grid_cols+j+k*grid_rows*grid_cols]);
+            fputs(str,fp);
+            index++;
+          }
+
+    fclose(fp);	
+}
+
 
 void usage(int argc, char **argv)
 
