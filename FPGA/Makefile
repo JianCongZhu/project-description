@@ -1,18 +1,17 @@
 CC = g++
-CFLAGS = -Wall -O3
-LDFLAGS =
+CFLAGS = -Wall -std=c++11
 
-SRC = 3dHLS.cpp  # Add more source files if needed
-OBJ = $(SRC:.c=.o)
-EXECUTABLE = 3dhls
+SRCS = 3Dhls.cpp
+OBJS = $(SRCS:.cpp=.o)
+TARGET = 3Dhls
 
-all: $(EXECUTABLE)
+all: $(TARGET)
 
-$(EXECUTABLE): $(OBJ)
-	$(CC) $(LDFLAGS) $^ -o $@
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(EXECUTABLE)
+	rm -f $(OBJS) $(TARGET)
