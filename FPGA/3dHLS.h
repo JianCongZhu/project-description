@@ -1,9 +1,10 @@
 #ifndef _3DHLS_H
 #define _3DHLS_H
 
-#define GRID_ROWS  // Define the number of rows
-#define GRID_COLS  // Define the number of columns
-
+#define GRID_ROWS 64// Define the number of rows
+#define GRID_COLS 64// Define the number of columns
+#define LAYERS    8
+#define ITERATIONS 20
 // Function prototypes
 
 void hotspot(float *result, float *temp, float *power, int numCols, int numRows, int layers, float Rx, float Ry, float Rz, float dt, int numiter);
