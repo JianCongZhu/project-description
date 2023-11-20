@@ -27,7 +27,7 @@ void buffer_load(float *dest, float *source)
     memcpy(dest, source, sizeof(float) * 3 * GRID_ROWS * GRID_COLS);
 }
 
-void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS * GRID_COLS], float power_buf[GRID_ROWS * GRID_COLS], float cn, float cs, float ce, float cw, float ct, float cb)
+void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS * GRID_COLS], float power_buf[GRID_ROWS * GRID_COLS], float cn, float cs, float ce, float cw, float ct, float cb, float stepDivCap, float dt)
 {
 
     int x, y, z;
@@ -36,14 +36,14 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS *
     for (y = 0; y < GRID_COLS; y++)
         for (x = 0; x < GRID_ROWS; x++)
         {
-            c = x + y * nx + z * nx * ny;
+            c = x + y * GRID_ROWS + z * GRID_ROWS * GRID_COLS;
 
             w = (x == 0) ? c : c - 1;
-            e = (x == nx - 1) ? c : c + 1;
-            n = (y == 0) ? c : c - nx;
-            s = (y == ny - 1) ? c : c + nx;
-            b = (z == 0) ? c : c - nx * ny;
-            t = (z == nz - 1) ? c : c + nx * ny;
+            e = (x == GRID_ROWS - 1) ? c : c + 1;
+            n = (y == 0) ? c : c - GRID_ROWS;
+            s = (y == GRID_COLS - 1) ? c : c + GRID_ROWS;
+            b = (z == 0) ? c : c - GRID_ROWS * GRID_COLS;
+            t = (z == LAYERS - 1) ? c : c + GRID_ROWS * GRID_COLS;
 
             result_buf[c] = temp_buf[c] * cc + temp_buf[n] * cn + temp_buf[s] * cs + temp_buf[e] * ce + temp_buf[w] * cw + temp_buf[t] * ct + temp_buf[b] * cb + (dt / Cap) * power_buf[c] + ct * amb_temp;
         }
@@ -75,7 +75,7 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
         for (j = 0; j < LAYERS; j++)
         {
             buffer_load(temp_buf, temp + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS);
-            buffer_load(power_buf, power + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS);
+            buffer_load(power_buf, power + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS, float stepDivCap, float dt);
             compute(result_buf, temp_buf, power_buf, cn, cs, ce, cw, ct, cb);
             buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf, GRID_ROWS, GRID_COLS);
         }
