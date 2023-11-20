@@ -62,7 +62,7 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS *
 
 void buffer_store(float *dest, float *source)
 {
-    memcpy(source, dest, sizeof(float) * GRID_ROWS * GRID_COLS);
+    memcpy(dest, source, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
 
 void hotspot(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt)
@@ -262,7 +262,7 @@ int main(int argc, char **argv)
     // Invoke the top-level-entity
     
     hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
-    writeoutput(tempOut,numRows, numCols, layers, ofile);
+    writeoutput(tempIn,numRows, numCols, layers, ofile);
 
     free(powerIn);
     free(tempIn);
