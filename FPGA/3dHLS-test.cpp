@@ -5,6 +5,7 @@
 #include <math.h> 
 #include <sys/time.h>
 #include <string.h>
+#include "3dHLS.h"
 
 #define STR_SIZE (256)
 #define MAX_PD	(3.0e6)
@@ -72,6 +73,48 @@ void writeoutput(float *vect, int grid_rows, int grid_cols, int layers, char *fi
           }
 
     fclose(fp);	
+}
+
+
+void computeTempCPU(float *pIn, float* tIn, float *tOut, 
+        int nx, int ny, int nz, float Cap, 
+        float Rx, float Ry, float Rz, 
+        float dt, int numiter) 
+{   float ce, cw, cn, cs, ct, cb, cc;
+    float stepDivCap = dt / Cap;
+    ce = cw =stepDivCap/ Rx;
+    cn = cs =stepDivCap/ Ry;
+    ct = cb =stepDivCap/ Rz;
+
+    cc = 1.0 - (2.0*ce + 2.0*cn + 3.0*ct);
+
+    int c,w,e,n,s,b,t;
+    int x,y,z;
+    int i = 0;
+    do{
+        for(z = 0; z < nz; z++)
+            for(y = 1; y < ny; y++)
+                for(x = 0; x < nx; x++)
+                {
+                    c = x + y * nx + z * nx * ny;
+
+                    w = (x == 0) ? c      : c - 1;
+                    e = (x == nx - 1) ? c : c + 1;
+                    n = (y == 0) ? c      : c - nx;
+                    s = (y == ny - 1) ? c : c + nx;
+                    b = (z == 0) ? c      : c - nx * ny;
+                    t = (z == nz - 1) ? c : c + nx * ny;
+
+
+                    tOut[c] = tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[e]*ce + tIn[w]*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
+                }
+        float *temp = tIn;
+        tIn = tOut;
+        tOut = temp; 
+        i++;
+    }
+    while(i < numiter);
+
 }
 
 float accuracy(float *arr1, float *arr2, int len)
@@ -214,10 +257,21 @@ int main(int argc, char** argv)
     gettimeofday(&stop,NULL);
     time = (stop.tv_usec-start.tv_usec)*1.0e-6 + stop.tv_sec - start.tv_sec;
     computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
+    float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    float acc = accuracy(tempOut,answer,numRows*numCols*layers);
-    printf("Time: %.3f (s)\n",time);
-    printf("Accuracy: %e\n",acc);
+    hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
+    float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
+
+    if (acc1 != acc2){
+      printf("Test failed. Results not matching: acc_sw = %e, acc_hw = %e\n", acc1, acc2);
+      return -1;
+    }
+    else{
+      printf("TEST PASSED!\n");
+    }
+
+    // printf("Time: %.3f (s)\n",time);
+    // printf("Accuracy: %e\n",acc);
     writeoutput(tempOut,numRows, numCols, layers, ofile);
     free(tempIn);
     free(tempOut); free(powerIn);
