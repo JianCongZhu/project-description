@@ -1,9 +1,9 @@
 #ifndef _3DHLS_H
 #define _3DHLS_H
 
-#define GRID_ROWS 64// Define the number of rows
-#define GRID_COLS 64// Define the number of columns
-#define LAYERS    8
+#define GRID_ROWS 64 // Define the number of rows
+#define GRID_COLS 64 // Define the number of columns
+#define LAYERS 8
 #define ITERATIONS 20
 // Function prototypes
 

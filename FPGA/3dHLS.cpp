@@ -27,7 +27,7 @@ void buffer_load(float *dest, float *source)
     memcpy(dest, source, sizeof(float) * 3 * GRID_ROWS * GRID_COLS);
 }
 
-void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS * GRID_COLS], float power_buf[GRID_ROWS * GRID_COLS], float cn, float cs, float ce, float cw, float ct, float cb, float stepDivCap, float dt)
+void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS * GRID_COLS], float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt)
 {
 
     int x, y, z;
@@ -49,7 +49,7 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS *
         }
 }
 
-void buffer_store(float *dest, float *source, int GRID_ROWS, int GRID_COLS)
+void buffer_store(float *dest, float *source)
 {
     memcpy(source, dest, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
@@ -58,8 +58,8 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
 {
 
     int i, j;
-    int cc, cn, cs, ce, cw, ct, cb,
-        float stepDivCap = dt / Cap;
+    int cc, cn, cs, ce, cw, ct, cb;
+    float stepDivCap = dt / Cap;
     ce = cw = stepDivCap / Rx;
     cn = cs = stepDivCap / Ry;
     ct = cb = stepDivCap / Rz;
@@ -75,8 +75,8 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
         for (j = 0; j < LAYERS; j++)
         {
             buffer_load(temp_buf, temp + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS);
-            buffer_load(power_buf, power + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS, float stepDivCap, float dt);
-            compute(result_buf, temp_buf, power_buf, cn, cs, ce, cw, ct, cb);
+            buffer_load(power_buf, power + 3 * GRID_ROWS * GRID_COLS * j, GRID_ROWS, GRID_COLS);
+            compute(result_buf, temp_buf, power_buf, cc, cn, cs, ce, cw, ct, cb);
             buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf, GRID_ROWS, GRID_COLS);
         }
     }
