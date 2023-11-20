@@ -16,7 +16,9 @@
 /* capacitance fitting factor	*/
 #define FACTOR_CHIP 0.5
 
-void buffer_load(float *dest, float *source)
+
+
+void buffer_load(float *dest, float *source, int numRows, int numCols)
 {
     memcpy(dest, source, sizeof(float) * 3 * numRows * numCols);
 }
@@ -43,14 +45,16 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float temp_buf[GRID_ROWS *
         }
 }
 
-void store(float *dest, float *source)
+void buffer_store(float *dest, float *source, int numRows, int numCols)
 {
     memcpy(source, dest, sizeof(float) * numRows * numCols);
 }
 
-void hotspot(float* result, float* temp, float* power, int numCols, int numRows, int layers, float Rx, float Ry, float Rz, float dt, int numiter)
+void hotspot(float* result, float* temp, float* power, int numCols, int numRows, int layers, float Cap, float Rx, float Ry, float Rz, float dt, int numiter)
 {
 
+    int i, j;
+    int cc, cn, cs, ce, cw, ct, cb,
     float stepDivCap = dt / Cap;
     ce = cw = stepDivCap / Rx;
     cn = cs = stepDivCap / Ry;
@@ -62,22 +66,23 @@ void hotspot(float* result, float* temp, float* power, int numCols, int numRows,
     float power_buf[3 * numRows * numCols];
     float result_buf[numRows * numCols];
 
-    int i, j;
-    int cc, cn, cs, ce, cw, ct, cb,
+    
 
         for (i = 0; i < numiter; i++)
     {
         for (j = 0; j < layers; j++)
         {
-            buffer_load(temp_buf, temp + 3 * numRows * numCols * j);
-            buffer_load(power_buf, power + 3 * numRows * numColsnumCols * j);
+            buffer_load(temp_buf, temp + 3 * numRows * numCols * j, numRows, numCols);
+            buffer_load(power_buf, power + 3 * numRows * numCols * j, numRows, numCols);
             compute(result_buf, temp_buf, power_buf, cn, cs, ce, cw, ct, cb);
-            buffer_store(temp + numRows * numCols * j, result_buf)
+            buffer_store(temp + numRows * numCols * j, result_buf, numRows, numCols)
         }
     }
 
     return;
 }
+
+
 
 int main(int argc, char **argv)
 {
@@ -132,5 +137,5 @@ int main(int argc, char **argv)
     hotspot(tempOut, tempIn, powerIn, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt, iterations);
     printf("Top-Level Entity has ran\n");
 
-    return;
+    return 0;
 }
