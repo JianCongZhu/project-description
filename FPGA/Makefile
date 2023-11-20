@@ -1,9 +1,9 @@
 CC = g++
 CFLAGS = -Wall -std=c++11
 
-SRCS = 3Dhls.cpp
+SRCS = 3dHLS.cpp
 OBJS = $(SRCS:.cpp=.o)
-TARGET = 3Dhls
+TARGET = 3dhls
 
 all: $(TARGET)
 
