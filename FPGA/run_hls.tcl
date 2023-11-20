@@ -7,7 +7,7 @@ open_project mm.prj -reset
 set_top hotspot
 # add design files
 add_files 3dHLS.cpp
-add_files -tb 3dHLS-test.cpp
+add_files -tb 3dHLS_test.cpp
 
 # open HLS solution solution1
 open_solution "solution1"

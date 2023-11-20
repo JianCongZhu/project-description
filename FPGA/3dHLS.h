@@ -21,5 +21,9 @@ float accuracy(float *arr1, float *arr2, int len);
 void computeTempOMP(float *pIn, float *tIn, float *tOut, int nx, int ny, int nz, float Cap, float Rx, float Ry, float Rz, float dt, int numiter);
 void usage(int argc, char **argv);
 
+struct bench_args_t {
+    float temp[GRID_ROWS * GRID_COLS];
+    float power[GRID_ROWS * GRID_COLS];
+};
 
 #endif // _3DHLS_H
