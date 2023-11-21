@@ -4,7 +4,7 @@
 #define GRID_ROWS 64
 #define GRID_COLS 64
 #define LAYERS 8
-#define ITERATIONS 100
+#define ITERATIONS 5
 
 void usage(int argc, char **argv);
 void readinput(float *p, int row, int col, int layer, char *file);

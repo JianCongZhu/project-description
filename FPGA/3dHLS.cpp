@@ -27,7 +27,7 @@ void buffer_load(float *dest, float *source)
   memcpy(dest, source, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
 
-void compute(float *result_buf, float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
+void compute(float result_buf[GRID_ROWS * GRID_COLS] , float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
              float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt)
 {
 
@@ -50,7 +50,7 @@ void compute(float *result_buf, float center_buf[GRID_ROWS * GRID_COLS], float t
 
       result_buf[c] = center_buf[c] * cc + center_buf[n] * cn + center_buf[s] * cs + center_buf[e] * ce + center_buf[w] * cw + top_buf[c] * ct
        + bottom_buf[c] * cb + (dt / Cap) * power_buf[c] + ct * amb_temp;
-      // printf("result[%d] = %f\n", c, result_buf[c]);
+//       printf("result[%d] = %f\n", c, result_buf[c]);
     }
 }
 
@@ -146,9 +146,10 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
       // printf("here after store\n");
     }
   }
-
-
-
+	for (int i = 0; i < GRID_COLS*GRID_ROWS*LAYERS; i++) {
+	printf("Temp: %f , Result: %f \n", temp[i], result[i]);
+	
+}
   return;
 }
 
@@ -293,8 +294,31 @@ int main(int argc, char **argv)
 
   // Invoke the top-level-entity
 
-  hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
+  // hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
+  
   writeoutput(tempIn, numRows, numCols, layers, ofile);
+
+
+int i , j , k;
+int index = 0;
+  for (i = 0; i < 64; i++)
+
+    for (j = 0; j < 64; j++)
+
+      for (k = 0; k < 8; k++)
+
+      {
+
+        printf("%d\t%f\n", index, tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+
+       // fputs(str, fp);
+
+       // index++;
+
+      }
+
+  //for ( int i = 0; i < GRID_COLS * GRID_ROWS * LAYERS; i++ ) 
+	//printf("The tempIn value %d : %f \n", i, tempCopy[i grid_cols + j + k * grid_rows * grid_cols]);
 
   free(powerIn);
   free(tempIn);
