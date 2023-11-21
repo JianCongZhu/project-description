@@ -273,7 +273,9 @@ int main(int argc, char** argv)
         // check if the hardware and software outputs match
         if (tempOut[i][j][k] != answer[i][j][k])
         {
-          printf("Test failed. Results not matching: temp_sw = %e, temp_hw = %e\n", tempOut[i][j][k], answer[i][j][k]);
+          // report the index at which the outputs do not match in both arrays
+          printf("Results mismatch at index (%d,%d,%d): hw=%f, sw=%f\n", i, j, k, tempOut[i][j][k], answer[i][j][k]);
+          
           return -1;
         }
 
@@ -288,7 +290,7 @@ int main(int argc, char** argv)
 
     // printf("Time: %.3f (s)\n",time);
     // printf("Accuracy: %e\n",acc);
-    writeoutput(tempOut,numRows, numCols, layers, ofile);
+    // writeoutput(tempOut,numRows, numCols, layers, ofile);
     free(tempIn);
     free(tempOut); free(powerIn);
     return 0;
