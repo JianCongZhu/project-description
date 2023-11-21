@@ -57,8 +57,54 @@ void buffer_store(float *dest, float *source)
   memcpy(dest, source, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
 
-void hotspot(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt)
+void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt)
 {
+
+  if (argc != 7)
+  {
+    usage(argc, argv);
+  }
+
+  char *pfile, *tfile, *ofile; // *testFile;
+  int iterations = atoi(argv[3]);
+
+  pfile = argv[4];
+  tfile = argv[5];
+  ofile = argv[6];
+  // testFile = argv[7];
+  int numCols = atoi(argv[1]);
+  int numRows = atoi(argv[1]);
+  int layers = atoi(argv[2]);
+
+  float dx = chip_height / numRows;
+  float dy = chip_width / numCols;
+  float dz = t_chip / layers;
+
+  float Cap = FACTOR_CHIP * SPEC_HEAT_SI * t_chip * dx * dy;
+  float Rx = dy / (2.0 * K_SI * t_chip * dx);
+  float Ry = dx / (2.0 * K_SI * t_chip * dy);
+  float Rz = dz / (K_SI * dx * dy);
+
+  // cout << Rx << " " << Ry << " " << Rz << endl;
+  float max_slope = MAX_PD / (FACTOR_CHIP * t_chip * SPEC_HEAT_SI);
+  float dt = PRECISION / max_slope;
+
+  float *powerIn, *tempOut, *tempIn, *tempCopy; // *pCopy;
+  //    float *d_powerIn, *d_tempIn, *d_tempOut;
+  int size = numCols * numRows * layers;
+
+  powerIn = (float *)calloc(size, sizeof(float));
+  tempCopy = (float *)malloc(size * sizeof(float));
+  tempIn = (float *)calloc(size, sizeof(float));
+  tempOut = (float *)calloc(size, sizeof(float));
+  // pCopy = (float*)calloc(size,sizeof(float));
+  float *answer = (float *)calloc(size, sizeof(float));
+
+  // outCopy = (float*)calloc(size, sizeof(float));
+  readinput(powerIn, numRows, numCols, layers, pfile);
+  readinput(tempIn, numRows, numCols, layers, tfile);
+
+  memcpy(tempCopy, tempIn, size * sizeof(float));
 
   int i, j;
   float cc, cn, cs, ce, cw, ct, cb;
@@ -83,28 +129,7 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
 
   for (i = 0; i < ITERATIONS / 2; i++)
   {
-    for (j = 0; j < LAYERS; j++)
-    {
-      // printf("layer = %d\n", j);
-      // buffer_load(temp_buf, temp + 1 * GRID_ROWS * GRID_COLS * j);
-      if (j == 0) // bottom case
-      {
-        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);    // load for center layer
-        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1)); // load for top layer
-        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j));  // load for bottom layer
-      }
-      else if (j == LAYERS - 1) // top case
-      {
-        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
-        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j));        // load for top layer
-        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
-      }
-      else
-      {
-        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
-        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1));    // load for top layer
-        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
-      }
+    
 
       buffer_load(power_buf, power + GRID_ROWS * GRID_COLS * j);
       // printf("here after load 2\n");
@@ -143,6 +168,29 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
       buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf);
       // printf("here after store\n");
     }
+    for (j = 0; j < LAYERS; j++)
+    {
+      // printf("layer = %d\n", j);
+      // buffer_load(temp_buf, temp + 1 * GRID_ROWS * GRID_COLS * j);
+      if (j == 0) // bottom case
+      {
+        
+        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);    // load for center layer
+        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1)); // load for top layer
+        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j));  // load for bottom layer
+      }
+      else if (j == LAYERS - 1) // top case
+      {
+        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
+        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j));        // load for top layer
+        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
+      }
+      else
+      {
+        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
+        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1));    // load for top layer
+        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
+      }
   }
         int k; 
           int index = 0;
@@ -206,7 +254,7 @@ void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file
   fclose(fp);
 }
 
-void writeoutput(float *vect, int grid_rows, int grid_cols, int layers, char *file)
+void writeoutputHW(float *vect, int grid_rows, int grid_cols, int layers, char *file)
 {
 
   int i, j, k, index = 0;
@@ -252,57 +300,11 @@ void usage(int argc, char **argv)
 int main(int argc, char **argv)
 {
 
-  if (argc != 7)
-  {
-    usage(argc, argv);
-  }
-
-  char *pfile, *tfile, *ofile; // *testFile;
-  int iterations = atoi(argv[3]);
-
-  pfile = argv[4];
-  tfile = argv[5];
-  ofile = argv[6];
-  // testFile = argv[7];
-  int numCols = atoi(argv[1]);
-  int numRows = atoi(argv[1]);
-  int layers = atoi(argv[2]);
-
-  float dx = chip_height / numRows;
-  float dy = chip_width / numCols;
-  float dz = t_chip / layers;
-
-  float Cap = FACTOR_CHIP * SPEC_HEAT_SI * t_chip * dx * dy;
-  float Rx = dy / (2.0 * K_SI * t_chip * dx);
-  float Ry = dx / (2.0 * K_SI * t_chip * dy);
-  float Rz = dz / (K_SI * dx * dy);
-
-  // cout << Rx << " " << Ry << " " << Rz << endl;
-  float max_slope = MAX_PD / (FACTOR_CHIP * t_chip * SPEC_HEAT_SI);
-  float dt = PRECISION / max_slope;
-
-  float *powerIn, *tempOut, *tempIn, *tempCopy; // *pCopy;
-  //    float *d_powerIn, *d_tempIn, *d_tempOut;
-  int size = numCols * numRows * layers;
-
-  powerIn = (float *)calloc(size, sizeof(float));
-  tempCopy = (float *)malloc(size * sizeof(float));
-  tempIn = (float *)calloc(size, sizeof(float));
-  tempOut = (float *)calloc(size, sizeof(float));
-  // pCopy = (float*)calloc(size,sizeof(float));
-  float *answer = (float *)calloc(size, sizeof(float));
-
-  // outCopy = (float*)calloc(size, sizeof(float));
-  readinput(powerIn, numRows, numCols, layers, pfile);
-  readinput(tempIn, numRows, numCols, layers, tfile);
-
-  memcpy(tempCopy, tempIn, size * sizeof(float));
+  
 
   // Invoke the top-level-entity
 
-  hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
-
-  writeoutput(tempIn, numRows, numCols, layers, ofile);
+  
 
   int i, j, k;
   int index = 0;
@@ -321,6 +323,7 @@ int main(int argc, char **argv)
   free(tempIn);
   free(tempCopy);
   free(answer);
+  free(tempOut);
   printf("Top-Level Entity has ran\n");
 
   return 0;

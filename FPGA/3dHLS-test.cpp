@@ -241,6 +241,7 @@ int main(int argc, char** argv)
     tempCopy = (float*)malloc(size * sizeof(float));
     tempIn = (float*)calloc(size,sizeof(float));
     tempOut = (float*)calloc(size, sizeof(float));
+    tempOutHW = (float*)calloc(size, sizeof(float));
     //pCopy = (float*)calloc(size,sizeof(float));
     float* answer = (float*)calloc(size, sizeof(float));
 
@@ -253,22 +254,37 @@ int main(int argc, char** argv)
     struct timeval start, stop;
     float time;
     gettimeofday(&start,NULL);
-    computeTempOMP(powerIn, tempIn, tempOut, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
+    //computeTempOMP(powerIn, tempIn, tempOut, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
     gettimeofday(&stop,NULL);
     time = (stop.tv_usec-start.tv_usec)*1.0e-6 + stop.tv_sec - start.tv_sec;
     computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
     float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
+    hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
     float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    if (acc1 != acc2){
-      printf("Test failed. Results not matching: acc_sw = %e, acc_hw = %e\n", acc1, acc2);
-      return -1;
-    }
-    else{
-      printf("TEST PASSED!\n");
-    }
+    for (i = 0; i < 64; i++)
+
+    for (j = 0; j < 64; j++)
+
+      for (k = 0; k < 8; k++)
+
+      {
+        // check if the hardware and software outputs match
+        if (tempOut[i][j][k] != answer[i][j][k])
+        {
+          printf("Test failed. Results not matching: temp_sw = %e, temp_hw = %e\n", tempOut[i][j][k], answer[i][j][k]);
+          return -1;
+        }
+
+      }
+    // if (acc1 != acc2){
+    //   printf("Test failed. Results not matching: acc_sw = %e, acc_hw = %e\n", acc1, acc2);
+    //   return -1;
+    // }
+    // else{
+    //   printf("TEST PASSED!\n");
+    // }
 
     // printf("Time: %.3f (s)\n",time);
     // printf("Accuracy: %e\n",acc);
