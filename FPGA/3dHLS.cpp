@@ -54,7 +54,7 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS
 
 void buffer_store(float *dest, float *source)
 {
-  memcpy(source, dest, sizeof(float) * GRID_ROWS * GRID_COLS);
+  memcpy(dest, source, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
 
 void hotspot(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt)
@@ -144,7 +144,7 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
       // printf("here after store\n");
     }
   }
-          int i, j, k;
+        int k; 
           int index = 0;
           for (i = 0; i < 64; i++)
 
@@ -154,7 +154,7 @@ void hotspot(float *result, float *temp, float *power, int layers, float Cap, fl
 
               {
 
-                printf("%d\t%f\n", index, temp[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+//                printf("Kernel: %d\t%f\n", index, temp[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
               }
   return;
 }
@@ -314,7 +314,7 @@ int main(int argc, char **argv)
 
       {
 
-        printf("%d\t%f\n", index, tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+//        printf("%d\t%f\n", index, tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
       }
 
   free(powerIn);
