@@ -294,7 +294,7 @@ int main(int argc, char **argv)
   // Invoke the top-level-entity
 
   hotspot(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
-  writeoutput(tempOut, numRows, numCols, layers, ofile);
+  writeoutput(tempIn, numRows, numCols, layers, ofile);
 
   free(powerIn);
   free(tempIn);
