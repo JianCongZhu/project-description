@@ -258,10 +258,10 @@ int main(int argc, char** argv)
     gettimeofday(&stop,NULL);
     time = (stop.tv_usec-start.tv_usec)*1.0e-6 + stop.tv_sec - start.tv_sec;
     computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
-    float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
+    //float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt);
-    float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
+    hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt, pfile, tfile, ofile, numCols, numRows, iterations);
+    //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
 
     for (i = 0; i < 64; i++)
 
@@ -271,10 +271,10 @@ int main(int argc, char** argv)
 
       {
         // check if the hardware and software outputs match
-        if (tempOut[i][j][k] != answer[i][j][k])
+        if (tempIn[i][j][k] != answer[i][j][k])
         {
           // report the index at which the outputs do not match in both arrays
-          printf("Results mismatch at index (%d,%d,%d): hw=%f, sw=%f\n", i, j, k, tempOut[i][j][k], answer[i][j][k]);
+          printf("Results mismatch at index (%d,%d,%d): hw=%f, sw=%f\n", i, j, k, tempIn[i][j][k], answer[i][j][k]);
           
           return -1;
         }

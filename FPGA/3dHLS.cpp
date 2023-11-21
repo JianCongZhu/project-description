@@ -57,24 +57,24 @@ void buffer_store(float *dest, float *source)
   memcpy(dest, source, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
 
-void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt)
+void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt, char* pfile, char* tfile, char* ofile, int numCols, int numRows, int iterations)
 {
 
-  if (argc != 7)
-  {
-    usage(argc, argv);
-  }
+  // if (argc != 7)
+  // {
+  //   usage(argc, argv);
+  // }
 
-  char *pfile, *tfile, *ofile; // *testFile;
-  int iterations = atoi(argv[3]);
+  // char *pfile, *tfile, *ofile; // *testFile;
+  // int iterations = atoi(argv[3]);
 
-  pfile = argv[4];
-  tfile = argv[5];
-  ofile = argv[6];
-  // testFile = argv[7];
-  int numCols = atoi(argv[1]);
-  int numRows = atoi(argv[1]);
-  int layers = atoi(argv[2]);
+  // pfile = argv[4];
+  // tfile = argv[5];
+  // ofile = argv[6];
+  // // testFile = argv[7];
+  // int numCols = atoi(argv[1]);
+  // int numRows = atoi(argv[1]);
+  // int layers = atoi(argv[2]);
 
   float dx = chip_height / numRows;
   float dy = chip_width / numCols;
@@ -94,9 +94,9 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
   int size = numCols * numRows * layers;
 
   powerIn = (float *)calloc(size, sizeof(float));
-  tempCopy = (float *)malloc(size * sizeof(float));
-  tempIn = (float *)calloc(size, sizeof(float));
-  tempOut = (float *)calloc(size, sizeof(float));
+  // tempCopy = (float *)malloc(size * sizeof(float));
+  // tempIn = (float *)calloc(size, sizeof(float));
+  // tempOut = (float *)calloc(size, sizeof(float));
   // pCopy = (float*)calloc(size,sizeof(float));
   float *answer = (float *)calloc(size, sizeof(float));
 
