@@ -98,22 +98,22 @@ void computeTempCPU(float *pIn, float* tIn, float *tOut,
 
                     tOut[c] = tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[e]*ce + tIn[w]*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
 
-                    // if(c == 0 && z == 0 && i == 0){
-                    //     printf("c tIn[%d] = %f\n", c, tIn[c]);
-                    //     printf("n tIn[%d] = %f\n", n, tIn[n]);
-                    //     printf("s tIn[%d] = %f\n", s, tIn[s]);
-                    //     printf("e tIn[%d] = %f\n", e, tIn[e]);
-                    //     printf("w tIn[%d] = %f\n", w, tIn[w]);
-                    //     printf("c tIn[%d] = %f\n", t, tIn[t]);
-                    //     printf("c tIn[%d] = %f\n", b, tIn[b]);
-                    //     printf("c dt = %f\n", c, dt);
-                    //     printf("c Cap = %f\n", c, Cap);
-                    //     printf("c dt/Cap = %f\n", c, dt/Cap);
-                    //     printf("c pIn[%d] = %f\n", c, pIn[c]);
-                    //     printf("c ct = %f\n", ct);
-                    //     printf("c amb_temp = %f\n", amb_temp);
-                    //     printf("c tOut[%d] = %f\n", c, tOut[c]);
-                    // }
+                     /*if(c == 0 && z == 0 &&  i == 0){
+                         printf("c tIn[%d] = %f\n", c, tIn[c]);
+                         printf("n tIn[%d] = %f\n", n, tIn[n]);
+                         printf("s tIn[%d] = %f\n", s, tIn[s]);
+                         printf("e tIn[%d] = %f\n", e, tIn[e]);
+                         printf("w tIn[%d] = %f\n", w, tIn[w]);
+                         printf("c tIn[%d] = %f\n", t, tIn[t]);
+                         printf("c tIn[%d] = %f\n", b, tIn[b]);
+                         printf("c dt = %f\n", c, dt);
+                         printf("c Cap = %f\n", c, Cap);
+                         printf("c dt/Cap = %f\n", c, dt/Cap);
+                         printf("c pIn[%d] = %f\n", c, pIn[c]);
+                         printf("c ct = %f\n", ct);
+                         printf("c amb_temp = %f\n", amb_temp);
+                         printf("c tOut[%d] = %f\n", c, tOut[c]);
+                     }*/
                 }
         float *temp = tIn;
         tIn = tOut;
@@ -276,22 +276,24 @@ int main(int argc, char** argv)
     //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
 
     for (int k = 0; k < 8; k++)
-
+    {
     for (int i = 0; i < 64; i++)
-
+    {
       for (int j = 0; j < 64; j++)
 
       {
         // check if the hardware and software outputs match, not the accuracies
-        if (tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] != answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])
+        if (abs(tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]-answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])/answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]>0.01)
         {
           printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
-          //return -1;
+          return -1;
         }
 
         
 
       }
+}
+}
     // if (acc1 != acc2){
     //   printf("Test failed. Results not matching: acc_sw = %e, acc_hw = %e\n", acc1, acc2);
     //   return -1;

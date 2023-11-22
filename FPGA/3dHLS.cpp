@@ -19,10 +19,10 @@ void buffer_load(float *dest, float *source)
 }
 
 void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
-             float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int iteration)
+             float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int iteration, int z)
 {
 
-  int x, y, z;
+  int x, y;
   int c, w, e, n, s, b, t;
 
   for (y = 0; y < GRID_COLS; y++)
@@ -39,23 +39,23 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS
       // t = (z == LAYERS - 1) ? c : c + GRID_ROWS * GRID_COLS;
 
       result_buf[c] = center_buf[c] * cc + center_buf[n] * cn + center_buf[s] * cs + center_buf[e] * ce + center_buf[w] * cw + top_buf[c] * ct + bottom_buf[c] * cb + (dt / Cap) * power_buf[c] + ct * amb_temp;
-      // if(c == 0 && iteration == 0){
-      //   printf("c center_buf[%d] = %f\n", c, center_buf[c]);
-      //   printf("n center_buf[%d] = %f\n", n, center_buf[n]);
-      //   printf("s center_buf[%d] = %f\n", s, center_buf[s]);
-      //   printf("e center_buf[%d] = %f\n", e, center_buf[e]);
-      //   printf("w center_buf[%d] = %f\n", w, center_buf[w]);
-      //   printf("c top_buf[%d] = %f\n", c, top_buf[c]);
-      //   printf("c bottom_buf[%d] = %f\n", c, bottom_buf[c]);
-      //   printf("c dt = %f\n", c, dt);
-      //   printf("c Cap = %f\n", c, Cap);
+       /*if(c == 0 && z == 0 && iteration == 0){
+         printf("c center_buf[%d] = %f\n", c, center_buf[c]);
+         printf("n center_buf[%d] = %f\n", n, center_buf[n]);
+         printf("s center_buf[%d] = %f\n", s, center_buf[s]);
+         printf("e center_buf[%d] = %f\n", e, center_buf[e]);
+         printf("w center_buf[%d] = %f\n", w, center_buf[w]);
+         printf("c top_buf[%d] = %f\n", c, top_buf[c]);
+         printf("c bottom_buf[%d] = %f\n", c, bottom_buf[c]);
+         printf("c dt = %f\n", c, dt);
+         printf("c Cap = %f\n", c, Cap);
         
-      //   printf("c dt/Cap = %f\n", c, dt/Cap);
-      //   printf("c power_buf[%d] = %f\n", c, power_buf[c]);
-      //   printf("c ct = %f\n", ct);
-      //   printf("c amb_temp = %f\n", amb_temp);
-      //   printf("c hw_result[%d] = %f\n", c, result_buf[c]);
-      // }
+         printf("c dt/Cap = %f\n", c, dt/Cap);
+         printf("c power_buf[%d] = %f\n", c, power_buf[c]);
+         printf("c ct = %f\n", ct);
+         printf("c amb_temp = %f\n", amb_temp);
+         printf("c hw_result[%d] = %f\n", c, result_buf[c]);
+       }*/
         
     }
 }
@@ -137,7 +137,7 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
   // float bottomBuf[GRID_ROWS * GRID_COLS];
 
   printf("iterations is %d\n", iterations);
-  for (i = 0; i < ITERATIONS / 2; i++)
+  for (i = 0; i < (ITERATIONS / 2); i++)
   {
     for (j = 0; j < LAYERS; j++)
     {
@@ -165,7 +165,7 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
       
       buffer_load(power_buf, power + GRID_ROWS * GRID_COLS * j);
       // printf("here after load 2\n");
-      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i);
+      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i, j);
       // printf("here after compute\n");
       buffer_store(result + GRID_ROWS * GRID_COLS * j, result_buf);
       // printf("here after store\n");
@@ -195,7 +195,7 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
 
       buffer_load(power_buf, power + GRID_ROWS * GRID_COLS * j);
       // printf("here after load 2\n");
-      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i);
+      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i,j);
       // printf("here after compute\n");
       buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf);
       // printf("here after store\n");
