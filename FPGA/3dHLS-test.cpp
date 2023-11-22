@@ -76,8 +76,8 @@ void writeoutput(float *vect, int grid_rows, int grid_cols, int layers, char *fi
       printf( "The file was not opened\n" );
 
     for (i=0; i < grid_rows; i++) 
-      for (j=0; j < grid_cols; j++)
-        for (k=0; k < layers; k++)
+      for (j=0; j < layers; j++)
+        for (k=0; k < grid_cols; k++)
           {
             sprintf(str, "%d\t%g\n", index, vect[i*grid_cols+j+k*grid_rows*grid_cols]);
             fputs(str,fp);
@@ -216,7 +216,7 @@ int main(int argc, char** argv)
     //computeTempOMP(powerIn, tempIn, tempOut, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
     gettimeofday(&stop,NULL);
     time = (stop.tv_usec-start.tv_usec)*1.0e-6 + stop.tv_sec - start.tv_sec;
-    computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
+//    computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
     //float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
     hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt, numCols, numRows, iterations, dx, dy, dz, t_chip, chip_height, chip_width, amb_temp);
@@ -233,7 +233,7 @@ int main(int argc, char** argv)
         // check if the hardware and software outputs match, not the accuracies
         if (tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] != answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])
         {
-          printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+          printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , tempCopy[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
           //return -1;
         }
 

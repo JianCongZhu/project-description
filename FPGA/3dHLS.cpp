@@ -39,7 +39,7 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS
       // t = (z == LAYERS - 1) ? c : c + GRID_ROWS * GRID_COLS;
 
 
-      result_buf[c] = 2;
+      
       //result_buf[c] = center_buf[c] * cc + center_buf[n] * cn + center_buf[s] * cs + center_buf[e] * ce + center_buf[w] * cw + top_buf[c] * ct + bottom_buf[c] * cb + (dt / Cap) * power_buf[c] + ct * amb_temp;
       
       //       printf("result[%d] = %f\n", c, result_buf[c]);
@@ -108,8 +108,11 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
       
       buffer_load(power_buf, power + GRID_ROWS * GRID_COLS * j);
       // printf("here after load 2\n");
-      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt, amb_temp);
-      // printf("here after compute\n");
+//      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt, amb_temp);
+
+for(int i = 0; i< GRID_ROWS*GRID_COLS;i++){
+result_buf[i]=center_buf[i];
+}      // printf("here after compute\n");
       buffer_store(result + GRID_ROWS * GRID_COLS * j, result_buf);
       // printf("here after store\n");
     }
@@ -137,8 +140,13 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
       }
 
       buffer_load(power_buf, power + GRID_ROWS * GRID_COLS * j);
-      // printf("here after load 2\n");
-      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt, amb_temp);
+      
+
+	for (int i = 0; i < GRID_ROWS * GRID_COLS; i++){
+		result_buf[i] = center_buf[i];
+}
+// printf("here after load 2\n");
+      //compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt, amb_temp);
       // printf("here after compute\n");
       buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf);
       // printf("here after store\n");
