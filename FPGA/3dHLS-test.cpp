@@ -44,28 +44,6 @@ void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file
 
 }
 
-void writeoutputHW(float *vect, int grid_rows, int grid_cols, int layers, char *file)
-{
-
-  int i, j, k, index = 0;
-  FILE *fp;
-  char str[STR_SIZE];
-
-  if ((fp = fopen(file, "w")) == 0)
-    printf("The file was not opened\n");
-
-  for (i = 0; i < grid_rows; i++)
-    for (j = 0; j < grid_cols; j++)
-      for (k = 0; k < layers; k++)
-      {
-        sprintf(str, "%d\t%g\n", index, vect[i * grid_cols + j + k * grid_rows * grid_cols]);
-        fputs(str, fp);
-        index++;
-      }
-
-  fclose(fp);
-}
-
 void writeoutput(float *vect, int grid_rows, int grid_cols, int layers, char *file) {
 
     int i,j,k, index=0;
@@ -105,7 +83,7 @@ void computeTempCPU(float *pIn, float* tIn, float *tOut,
     int i = 0;
     do{
         for(z = 0; z < nz; z++)
-            for(y = 1; y < ny; y++)
+            for(y = 0; y < ny; y++)
                 for(x = 0; x < nx; x++)
                 {
                     c = x + y * nx + z * nx * ny;
@@ -119,6 +97,23 @@ void computeTempCPU(float *pIn, float* tIn, float *tOut,
 
 
                     tOut[c] = tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[e]*ce + tIn[w]*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
+
+                    // if(c == 0 && z == 0 && i == 0){
+                    //     printf("c tIn[%d] = %f\n", c, tIn[c]);
+                    //     printf("n tIn[%d] = %f\n", n, tIn[n]);
+                    //     printf("s tIn[%d] = %f\n", s, tIn[s]);
+                    //     printf("e tIn[%d] = %f\n", e, tIn[e]);
+                    //     printf("w tIn[%d] = %f\n", w, tIn[w]);
+                    //     printf("c tIn[%d] = %f\n", t, tIn[t]);
+                    //     printf("c tIn[%d] = %f\n", b, tIn[b]);
+                    //     printf("c dt = %f\n", c, dt);
+                    //     printf("c Cap = %f\n", c, Cap);
+                    //     printf("c dt/Cap = %f\n", c, dt/Cap);
+                    //     printf("c pIn[%d] = %f\n", c, pIn[c]);
+                    //     printf("c ct = %f\n", ct);
+                    //     printf("c amb_temp = %f\n", amb_temp);
+                    //     printf("c tOut[%d] = %f\n", c, tOut[c]);
+                    // }
                 }
         float *temp = tIn;
         tIn = tOut;
@@ -143,6 +138,60 @@ float accuracy(float *arr1, float *arr2, int len)
 
 }
 
+// void computeTempOMP(float *pIn, float* tIn, float *tOut, 
+//         int nx, int ny, int nz, float Cap, 
+//         float Rx, float Ry, float Rz, 
+//         float dt, int numiter) 
+// {  
+
+//     float ce, cw, cn, cs, ct, cb, cc;
+
+//     float stepDivCap = dt / Cap;
+//     ce = cw =stepDivCap/ Rx;
+//     cn = cs =stepDivCap/ Ry;
+//     ct = cb =stepDivCap/ Rz;
+
+//     cc = 1.0 - (2.0*ce + 2.0*cn + 3.0*ct);
+
+
+// #pragma omp parallel
+//     {
+//         int count = 0;
+//         float *tIn_t = tIn;
+//         float *tOut_t = tOut;
+
+// #pragma omp master
+//         printf("%d threads running\n", omp_get_num_threads());
+
+//         do {
+//             int z; 
+// #pragma omp for 
+//             for (z = 0; z < nz; z++) {
+//                 int y;
+//                 for (y = 0; y < ny; y++) {
+//                     int x;
+//                     for (x = 0; x < nx; x++) {
+//                         int c, w, e, n, s, b, t;
+//                         c =  x + y * nx + z * nx * ny;
+//                         w = (x == 0)    ? c : c - 1;
+//                         e = (x == nx-1) ? c : c + 1;
+//                         n = (y == 0)    ? c : c - nx;
+//                         s = (y == ny-1) ? c : c + nx;
+//                         b = (z == 0)    ? c : c - nx * ny;
+//                         t = (z == nz-1) ? c : c + nx * ny;
+//                         tOut_t[c] = cc * tIn_t[c] + cw * tIn_t[w] + ce * tIn_t[e]
+//                             + cs * tIn_t[s] + cn * tIn_t[n] + cb * tIn_t[b] + ct * tIn_t[t]+(dt/Cap) * pIn[c] + ct*amb_temp;
+//                     }
+//                 }
+//             }
+//             float *t = tIn_t;
+//             tIn_t = tOut_t;
+//             tOut_t = t; 
+//             count++;
+//         } while (count < numiter);
+//     } 
+//     return; 
+// } 
 
 void usage(int argc, char **argv)
 {
@@ -165,7 +214,7 @@ int main(int argc, char** argv)
     }
 
     char *pfile, *tfile, *ofile;// *testFile;
-    int iterations = atoi(argv[3]);
+    int iterations = ITERATIONS;
 
     pfile = argv[4];
     tfile = argv[5];
@@ -207,6 +256,8 @@ int main(int argc, char** argv)
     readinput(powerIn,numRows, numCols, layers,pfile);
     readinput(tempIn, numRows, numCols, layers, tfile);
     // print out all of tempIn 
+    
+    
 
     memcpy(tempCopy,tempIn, size * sizeof(float));
 
@@ -219,6 +270,7 @@ int main(int argc, char** argv)
     computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
     //float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
+    printf("Cap is %f\n", Cap);
     hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt, numCols, numRows, iterations, dx, dy, dz, t_chip, chip_height, chip_width, amb_temp);
     writeoutputHW(tempIn,numRows, numCols, layers, ofile);
     //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
@@ -251,6 +303,9 @@ int main(int argc, char** argv)
     // printf("Time: %.3f (s)\n",time);
     // printf("Accuracy: %e\n",acc);
     // writeoutput(tempOut,numRows, numCols, layers, ofile);
+    
+    
+
     free(tempIn);
     free(tempOut); free(powerIn);
     free(answer);
