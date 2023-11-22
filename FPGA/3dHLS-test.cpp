@@ -7,6 +7,18 @@
 #include <string.h>
 #include "3dHLS.h"
 
+#define DEFAULT_ROWS_COLS 64
+
+#define DEFAULT_LAYERS 8
+
+#define DEFAULT_ITERATIONS 1000
+
+#define DEFAULT_POWER_FILE "./data/power_64x8"
+
+#define DEFAULT_TEMP_FILE "./data/temp_64x8"
+
+#define DEFAULT_OUTPUT_FILE "output.txt"
+
 float t_chip = 0.0005;
 float chip_height = 0.016;
 float chip_width = 0.016;
@@ -208,13 +220,13 @@ void usage(int argc, char **argv)
 
 int main(int argc, char** argv)
 {
-    if (argc != 7)
+    /*if (argc != 7)
     {
         usage(argc,argv);
-    }
+    }*/
 
     char *pfile, *tfile, *ofile;// *testFile;
-    int iterations = ITERATIONS;
+    /*int iterations = ITERATIONS;
 
     pfile = argv[4];
     tfile = argv[5];
@@ -223,7 +235,22 @@ int main(int argc, char** argv)
     int numCols = atoi(argv[1]);
     int numRows = atoi(argv[1]);
     int layers = atoi(argv[2]);
+*/
+    int iterations = DEFAULT_ITERATIONS;
 
+
+
+        pfile = DEFAULT_POWER_FILE;
+
+	    tfile = DEFAULT_TEMP_FILE;
+
+	        ofile = DEFAULT_OUTPUT_FILE;
+
+		    int numCols = DEFAULT_ROWS_COLS;
+
+		        int numRows = DEFAULT_ROWS_COLS;
+
+			    int layers = DEFAULT_LAYERS;
     /* calculating parameters*/
 
     float dx = chip_height/numRows;
