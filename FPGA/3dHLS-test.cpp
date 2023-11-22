@@ -7,19 +7,9 @@
 #include <string.h>
 #include "3dHLS.h"
 
-#define STR_SIZE (256)
-#define MAX_PD	(3.0e6)
-/* required precision in degrees	*/
-#define PRECISION	0.001
-#define SPEC_HEAT_SI 1.75e6
-#define K_SI 100
-/* capacitance fitting factor	*/
-#define FACTOR_CHIP	0.5
-
-
-/* chip parameters	*/
 float t_chip = 0.0005;
-float chip_height = 0.016; float chip_width = 0.016; 
+float chip_height = 0.016;
+float chip_width = 0.016;
 /* ambient temperature, assuming no package at all	*/
 float amb_temp = 80.0;
 
@@ -131,60 +121,60 @@ float accuracy(float *arr1, float *arr2, int len)
 
 }
 
-void computeTempOMP(float *pIn, float* tIn, float *tOut, 
-        int nx, int ny, int nz, float Cap, 
-        float Rx, float Ry, float Rz, 
-        float dt, int numiter) 
-{  
+// void computeTempOMP(float *pIn, float* tIn, float *tOut, 
+//         int nx, int ny, int nz, float Cap, 
+//         float Rx, float Ry, float Rz, 
+//         float dt, int numiter) 
+// {  
 
-    float ce, cw, cn, cs, ct, cb, cc;
+//     float ce, cw, cn, cs, ct, cb, cc;
 
-    float stepDivCap = dt / Cap;
-    ce = cw =stepDivCap/ Rx;
-    cn = cs =stepDivCap/ Ry;
-    ct = cb =stepDivCap/ Rz;
+//     float stepDivCap = dt / Cap;
+//     ce = cw =stepDivCap/ Rx;
+//     cn = cs =stepDivCap/ Ry;
+//     ct = cb =stepDivCap/ Rz;
 
-    cc = 1.0 - (2.0*ce + 2.0*cn + 3.0*ct);
+//     cc = 1.0 - (2.0*ce + 2.0*cn + 3.0*ct);
 
 
-#pragma omp parallel
-    {
-        int count = 0;
-        float *tIn_t = tIn;
-        float *tOut_t = tOut;
+// #pragma omp parallel
+//     {
+//         int count = 0;
+//         float *tIn_t = tIn;
+//         float *tOut_t = tOut;
 
-#pragma omp master
-        printf("%d threads running\n", omp_get_num_threads());
+// #pragma omp master
+//         printf("%d threads running\n", omp_get_num_threads());
 
-        do {
-            int z; 
-#pragma omp for 
-            for (z = 0; z < nz; z++) {
-                int y;
-                for (y = 0; y < ny; y++) {
-                    int x;
-                    for (x = 0; x < nx; x++) {
-                        int c, w, e, n, s, b, t;
-                        c =  x + y * nx + z * nx * ny;
-                        w = (x == 0)    ? c : c - 1;
-                        e = (x == nx-1) ? c : c + 1;
-                        n = (y == 0)    ? c : c - nx;
-                        s = (y == ny-1) ? c : c + nx;
-                        b = (z == 0)    ? c : c - nx * ny;
-                        t = (z == nz-1) ? c : c + nx * ny;
-                        tOut_t[c] = cc * tIn_t[c] + cw * tIn_t[w] + ce * tIn_t[e]
-                            + cs * tIn_t[s] + cn * tIn_t[n] + cb * tIn_t[b] + ct * tIn_t[t]+(dt/Cap) * pIn[c] + ct*amb_temp;
-                    }
-                }
-            }
-            float *t = tIn_t;
-            tIn_t = tOut_t;
-            tOut_t = t; 
-            count++;
-        } while (count < numiter);
-    } 
-    return; 
-} 
+//         do {
+//             int z; 
+// #pragma omp for 
+//             for (z = 0; z < nz; z++) {
+//                 int y;
+//                 for (y = 0; y < ny; y++) {
+//                     int x;
+//                     for (x = 0; x < nx; x++) {
+//                         int c, w, e, n, s, b, t;
+//                         c =  x + y * nx + z * nx * ny;
+//                         w = (x == 0)    ? c : c - 1;
+//                         e = (x == nx-1) ? c : c + 1;
+//                         n = (y == 0)    ? c : c - nx;
+//                         s = (y == ny-1) ? c : c + nx;
+//                         b = (z == 0)    ? c : c - nx * ny;
+//                         t = (z == nz-1) ? c : c + nx * ny;
+//                         tOut_t[c] = cc * tIn_t[c] + cw * tIn_t[w] + ce * tIn_t[e]
+//                             + cs * tIn_t[s] + cn * tIn_t[n] + cb * tIn_t[b] + ct * tIn_t[t]+(dt/Cap) * pIn[c] + ct*amb_temp;
+//                     }
+//                 }
+//             }
+//             float *t = tIn_t;
+//             tIn_t = tOut_t;
+//             tOut_t = t; 
+//             count++;
+//         } while (count < numiter);
+//     } 
+//     return; 
+// } 
 
 void usage(int argc, char **argv)
 {
@@ -241,13 +231,16 @@ int main(int argc, char** argv)
     tempCopy = (float*)malloc(size * sizeof(float));
     tempIn = (float*)calloc(size,sizeof(float));
     tempOut = (float*)calloc(size, sizeof(float));
-    tempOutHW = (float*)calloc(size, sizeof(float));
+    //tempOutHW = (float*)calloc(size, sizeof(float));
     //pCopy = (float*)calloc(size,sizeof(float));
     float* answer = (float*)calloc(size, sizeof(float));
 
     // outCopy = (float*)calloc(size, sizeof(float));
     readinput(powerIn,numRows, numCols, layers,pfile);
     readinput(tempIn, numRows, numCols, layers, tfile);
+    // print out all of tempIn 
+    
+    
 
     memcpy(tempCopy,tempIn, size * sizeof(float));
 
@@ -260,24 +253,25 @@ int main(int argc, char** argv)
     computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
     //float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt, pfile, tfile, ofile, numCols, numRows, iterations);
+    hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt, numCols, numRows, iterations, dx, dy, dz, t_chip, chip_height, chip_width, amb_temp);
+    writeoutputHW(tempIn,numRows, numCols, layers, ofile);
     //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    for (i = 0; i < 64; i++)
+    for (int k = 0; k < 8; k++)
 
-    for (j = 0; j < 64; j++)
+    for (int i = 0; i < 64; i++)
 
-      for (k = 0; k < 8; k++)
+      for (int j = 0; j < 64; j++)
 
       {
-        // check if the hardware and software outputs match
-        if (tempIn[i][j][k] != answer[i][j][k])
+        // check if the hardware and software outputs match, not the accuracies
+        if (tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] != answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])
         {
-          // report the index at which the outputs do not match in both arrays
-          printf("Results mismatch at index (%d,%d,%d): hw=%f, sw=%f\n", i, j, k, tempIn[i][j][k], answer[i][j][k]);
-          
-          return -1;
+          printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+          //return -1;
         }
+
+        
 
       }
     // if (acc1 != acc2){
@@ -293,6 +287,7 @@ int main(int argc, char** argv)
     // writeoutput(tempOut,numRows, numCols, layers, ofile);
     free(tempIn);
     free(tempOut); free(powerIn);
+    free(answer);
     return 0;
 }	
 

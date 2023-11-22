@@ -7,20 +7,11 @@
 #include <string.h>
 #include "3dHLS.h"
 
-#define STR_SIZE (256)
-#define MAX_PD (3.0e6)
-/* required precision in degrees	*/
-#define PRECISION 0.001
-#define SPEC_HEAT_SI 1.75e6
-#define K_SI 100
-/* capacitance fitting factor	*/
-#define FACTOR_CHIP 0.5
-
-float t_chip = 0.0005;
-float chip_height = 0.016;
-float chip_width = 0.016;
-/* ambient temperature, assuming no package at all	*/
-float amb_temp = 80.0;
+// float t_chip = 0.0005;
+// float chip_height = 0.016;
+// float chip_width = 0.016;
+// /* ambient temperature, assuming no package at all	*/
+// float amb_temp = 80.0;
 
 void buffer_load(float *dest, float *source)
 {
@@ -28,7 +19,7 @@ void buffer_load(float *dest, float *source)
 }
 
 void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
-             float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt)
+             float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp)
 {
 
   int x, y, z;
@@ -48,6 +39,7 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS
       // t = (z == LAYERS - 1) ? c : c + GRID_ROWS * GRID_COLS;
 
       result_buf[c] = center_buf[c] * cc + center_buf[n] * cn + center_buf[s] * cs + center_buf[e] * ce + center_buf[w] * cw + top_buf[c] * ct + bottom_buf[c] * cb + (dt / Cap) * power_buf[c] + ct * amb_temp;
+      
       //       printf("result[%d] = %f\n", c, result_buf[c]);
     }
 }
@@ -57,9 +49,10 @@ void buffer_store(float *dest, float *source)
   memcpy(dest, source, sizeof(float) * GRID_ROWS * GRID_COLS);
 }
 
-void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt, char* pfile, char* tfile, char* ofile, int numCols, int numRows, int iterations)
+void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap, float Rx, float Ry, float Rz, float dt, int numCols, int numRows, int iterations, float dx, float dy, float dz, float t_chip, float chip_height, float chip_width, float amb_temp)
 {
 
+  
   // if (argc != 7)
   // {
   //   usage(argc, argv);
@@ -76,35 +69,35 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
   // int numRows = atoi(argv[1]);
   // int layers = atoi(argv[2]);
 
-  float dx = chip_height / numRows;
-  float dy = chip_width / numCols;
-  float dz = t_chip / layers;
+  // float dx = chip_height / numRows;
+  // float dy = chip_width / numCols;
+  // float dz = t_chip / layers;
 
-  float Cap = FACTOR_CHIP * SPEC_HEAT_SI * t_chip * dx * dy;
-  float Rx = dy / (2.0 * K_SI * t_chip * dx);
-  float Ry = dx / (2.0 * K_SI * t_chip * dy);
-  float Rz = dz / (K_SI * dx * dy);
+  // float Cap = FACTOR_CHIP * SPEC_HEAT_SI * t_chip * dx * dy;
+  // float Rx = dy / (2.0 * K_SI * t_chip * dx);
+  // float Ry = dx / (2.0 * K_SI * t_chip * dy);
+  // float Rz = dz / (K_SI * dx * dy);
 
   // cout << Rx << " " << Ry << " " << Rz << endl;
-  float max_slope = MAX_PD / (FACTOR_CHIP * t_chip * SPEC_HEAT_SI);
-  float dt = PRECISION / max_slope;
+  // float max_slope = MAX_PD / (FACTOR_CHIP * t_chip * SPEC_HEAT_SI);
+  // float dt = PRECISION / max_slope;
 
-  float *powerIn, *tempOut, *tempIn, *tempCopy; // *pCopy;
+  //float *powerIn, *tempOut, *tempIn, *tempCopy; // *pCopy;
   //    float *d_powerIn, *d_tempIn, *d_tempOut;
   int size = numCols * numRows * layers;
 
-  powerIn = (float *)calloc(size, sizeof(float));
+  // powerIn = (float *)calloc(size, sizeof(float));
   // tempCopy = (float *)malloc(size * sizeof(float));
   // tempIn = (float *)calloc(size, sizeof(float));
   // tempOut = (float *)calloc(size, sizeof(float));
   // pCopy = (float*)calloc(size,sizeof(float));
-  float *answer = (float *)calloc(size, sizeof(float));
+  // float *answer = (float *)calloc(size, sizeof(float));
 
   // outCopy = (float*)calloc(size, sizeof(float));
-  readinput(powerIn, numRows, numCols, layers, pfile);
-  readinput(tempIn, numRows, numCols, layers, tfile);
+  // readinput(powerIn, numRows, numCols, layers, pfile);
+  // readinput(tempIn, numRows, numCols, layers, tfile);
 
-  memcpy(tempCopy, tempIn, size * sizeof(float));
+  // memcpy(tempCopy, tempIn, size * sizeof(float));
 
   int i, j;
   float cc, cn, cs, ce, cw, ct, cb;
@@ -127,13 +120,36 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
   // float topBuf[GRID_ROWS * GRID_COLS];
   // float bottomBuf[GRID_ROWS * GRID_COLS];
 
+  printf("iterations is %d\n", iterations);
   for (i = 0; i < ITERATIONS / 2; i++)
   {
-    
-
+    for (j = 0; j < LAYERS; j++)
+    {
+      // printf("layer = %d\n", j);
+      // buffer_load(temp_buf, temp + 1 * GRID_ROWS * GRID_COLS * j);
+      if (j == 0) // bottom case
+      {
+        
+        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);    // load for center layer
+        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1)); // load for top layer
+        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j));  // load for bottom layer
+      }
+      else if (j == LAYERS - 1) // top case
+      {
+        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
+        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j));        // load for top layer
+        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
+      }
+      else
+      {
+        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
+        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1));    // load for top layer
+        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
+      }
+      
       buffer_load(power_buf, power + GRID_ROWS * GRID_COLS * j);
       // printf("here after load 2\n");
-      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt);
+      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt, amb_temp);
       // printf("here after compute\n");
       buffer_store(result + GRID_ROWS * GRID_COLS * j, result_buf);
       // printf("here after store\n");
@@ -163,96 +179,64 @@ void hotspot_HW(float *result, float *temp, float *power, int layers, float Cap,
 
       buffer_load(power_buf, power + GRID_ROWS * GRID_COLS * j);
       // printf("here after load 2\n");
-      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt);
+      compute(result_buf, center_buf, top_buf, bottom_buf, power_buf, cc, cn, cs, ce, cw, ct, cb, stepDivCap, dt, amb_temp);
       // printf("here after compute\n");
       buffer_store(temp + GRID_ROWS * GRID_COLS * j, result_buf);
       // printf("here after store\n");
     }
-    for (j = 0; j < LAYERS; j++)
-    {
-      // printf("layer = %d\n", j);
-      // buffer_load(temp_buf, temp + 1 * GRID_ROWS * GRID_COLS * j);
-      if (j == 0) // bottom case
-      {
-        
-        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);    // load for center layer
-        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1)); // load for top layer
-        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j));  // load for bottom layer
-      }
-      else if (j == LAYERS - 1) // top case
-      {
-        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
-        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j));        // load for top layer
-        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
-      }
-      else
-      {
-        buffer_load(center_buf, temp + GRID_ROWS * GRID_COLS * j);       // load for center layer
-        buffer_load(top_buf, temp + GRID_ROWS * GRID_COLS * (j + 1));    // load for top layer
-        buffer_load(bottom_buf, temp + GRID_ROWS * GRID_COLS * (j - 1)); // load for bottom layer
-      }
+    
   }
-        int k; 
-          int index = 0;
-          for (i = 0; i < 64; i++)
+  
 
-            for (j = 0; j < 64; j++)
-
-              for (k = 0; k < 8; k++)
-
-              {
-
-//                printf("Kernel: %d\t%f\n", index, temp[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
-              }
   return;
 }
 
-void fatal(char *s)
+// void fatal(char *s)
 
-{
+// {
 
-  fprintf(stderr, "Error: %s\n", s);
-}
+//   fprintf(stderr, "Error: %s\n", s);
+// }
 
-void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file)
-{
+// void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file)
+// {
 
-  int i, j, k;
+//   int i, j, k;
 
-  FILE *fp;
+//   FILE *fp;
 
-  char str[STR_SIZE];
+//   char str[STR_SIZE];
 
-  float val;
+//   float val;
 
-  if ((fp = fopen(file, "r")) == 0)
+//   if ((fp = fopen(file, "r")) == 0)
 
-    fatal("The file was not opened");
+//     fatal("The file was not opened");
 
-  for (i = 0; i <= grid_rows - 1; i++)
+//   for (i = 0; i <= grid_rows - 1; i++)
 
-    for (j = 0; j <= grid_cols - 1; j++)
+//     for (j = 0; j <= grid_cols - 1; j++)
 
-      for (k = 0; k <= layers - 1; k++)
+//       for (k = 0; k <= layers - 1; k++)
 
-      {
+//       {
 
-        if (fgets(str, STR_SIZE, fp) == NULL)
-          fatal("Error reading file\n");
+//         if (fgets(str, STR_SIZE, fp) == NULL)
+//           fatal("Error reading file\n");
 
-        if (feof(fp))
+//         if (feof(fp))
 
-          fatal("not enough lines in file");
+//           fatal("not enough lines in file");
 
-        if ((sscanf(str, "%f", &val) != 1))
+//         if ((sscanf(str, "%f", &val) != 1))
 
-          fatal("invalid file format");
+//           fatal("invalid file format");
 
-        vect[i * grid_cols + j + k * grid_rows * grid_cols] = val;
-      }
+//         vect[i * grid_cols + j + k * grid_rows * grid_cols] = val;
+//       }
 
-  fclose(fp);
-}
+//   fclose(fp);
+// }
 
 void writeoutputHW(float *vect, int grid_rows, int grid_cols, int layers, char *file)
 {
@@ -276,55 +260,55 @@ void writeoutputHW(float *vect, int grid_rows, int grid_cols, int layers, char *
   fclose(fp);
 }
 
-void usage(int argc, char **argv)
+// void usage(int argc, char **argv)
 
-{
+// {
 
-  fprintf(stderr, "Usage: %s <rows/cols> <layers> <iterations> <powerFile> <tempFile> <outputFile>\n", argv[0]);
+//   fprintf(stderr, "Usage: %s <rows/cols> <layers> <iterations> <powerFile> <tempFile> <outputFile>\n", argv[0]);
 
-  fprintf(stderr, "\t<rows/cols>  - number of rows/cols in the grid (positive integer)\n");
+//   fprintf(stderr, "\t<rows/cols>  - number of rows/cols in the grid (positive integer)\n");
 
-  fprintf(stderr, "\t<layers>  - number of layers in the grid (positive integer)\n");
+//   fprintf(stderr, "\t<layers>  - number of layers in the grid (positive integer)\n");
 
-  fprintf(stderr, "\t<iteration> - number of iterations\n");
+//   fprintf(stderr, "\t<iteration> - number of iterations\n");
 
-  fprintf(stderr, "\t<powerFile>  - name of the file containing the initial power values of each cell\n");
+//   fprintf(stderr, "\t<powerFile>  - name of the file containing the initial power values of each cell\n");
 
-  fprintf(stderr, "\t<tempFile>  - name of the file containing the initial temperature values of each cell\n");
+//   fprintf(stderr, "\t<tempFile>  - name of the file containing the initial temperature values of each cell\n");
 
-  fprintf(stderr, "\t<outputFile - output file\n");
+//   fprintf(stderr, "\t<outputFile - output file\n");
 
-  exit(1);
-}
+//   exit(1);
+// }
 
-int main(int argc, char **argv)
-{
-
-  
-
-  // Invoke the top-level-entity
+// int main(int argc, char **argv)
+// {
 
   
 
-  int i, j, k;
-  int index = 0;
-  for (i = 0; i < 64; i++)
+//   // Invoke the top-level-entity
 
-    for (j = 0; j < 64; j++)
+  
 
-      for (k = 0; k < 8; k++)
+//   int i, j, k;
+//   int index = 0;
+//   for (i = 0; i < 64; i++)
 
-      {
+//     for (j = 0; j < 64; j++)
 
-//        printf("%d\t%f\n", index, tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
-      }
+//       for (k = 0; k < 8; k++)
 
-  free(powerIn);
-  free(tempIn);
-  free(tempCopy);
-  free(answer);
-  free(tempOut);
-  printf("Top-Level Entity has ran\n");
+//       {
 
-  return 0;
-}
+// //        printf("%d\t%f\n", index, tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+//       }
+
+//   free(powerIn);
+//   free(tempIn);
+//   free(tempCopy);
+//   free(answer);
+//   free(tempOut);
+//   printf("Top-Level Entity has ran\n");
+
+//   return 0;
+// }

@@ -1,7 +1,8 @@
 CC = g++
 CFLAGS = -Wall -std=c++11
 
-SRCS = 3dHLS.cpp
+SRCS = 3dHLS-test.cpp 3dHLS.cpp
+
 OBJS = $(SRCS:.cpp=.o)
 TARGET = 3dhls
 
