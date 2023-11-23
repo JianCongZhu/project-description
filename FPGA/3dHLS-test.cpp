@@ -6,18 +6,7 @@
 #include <sys/time.h>
 #include <string.h>
 #include "3dHLS.h"
-
-#define DEFAULT_ROWS_COLS 64
-
-#define DEFAULT_LAYERS 8
-
-#define DEFAULT_ITERATIONS 1000
-
-#define DEFAULT_POWER_FILE "./data/power_64x8"
-
-#define DEFAULT_TEMP_FILE "./data/temp_64x8"
-
-#define DEFAULT_OUTPUT_FILE "output.txt"
+#include <unistd.h>
 
 float t_chip = 0.0005;
 float chip_height = 0.016;
@@ -28,6 +17,8 @@ float amb_temp = 80.0;
 void fatal(char *s)
 {
     fprintf(stderr, "Error: %s\n", s);
+    
+    
 }
 
 void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file) {
@@ -37,18 +28,30 @@ void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file
     float val;
 
     if( (fp  = fopen(file, "r" )) ==0 )
-      fatal( "The file was not opened" );
+      fatal( "The file was not opened\n" );
+      
+    
 
 
     for (i=0; i <= grid_rows-1; i++) 
       for (j=0; j <= grid_cols-1; j++)
         for (k=0; k <= layers-1; k++)
           {
-            if (fgets(str, STR_SIZE, fp) == NULL) fatal("Error reading file\n");
-            if (feof(fp))
-              fatal("not enough lines in file");
-            if ((sscanf(str, "%f", &val) != 1))
-              fatal("invalid file format");
+            
+            if (fgets(str, STR_SIZE, fp) == NULL) {
+            fatal("Error reading file\n");
+            }
+            
+            if (feof(fp)){
+              fatal("not enough lines in file\n");
+            }
+            
+
+            if ((sscanf(str, "%f", &val) != 1)){
+              fatal("invalid file format\n");
+            }
+            
+              
             vect[i*grid_cols+j+k*grid_rows*grid_cols] = val;
           }
 
@@ -110,22 +113,22 @@ void computeTempCPU(float *pIn, float* tIn, float *tOut,
 
                     tOut[c] = tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[e]*ce + tIn[w]*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
 
-                     /*if(c == 0 && z == 0 &&  i == 0){
-                         printf("c tIn[%d] = %f\n", c, tIn[c]);
-                         printf("n tIn[%d] = %f\n", n, tIn[n]);
-                         printf("s tIn[%d] = %f\n", s, tIn[s]);
-                         printf("e tIn[%d] = %f\n", e, tIn[e]);
-                         printf("w tIn[%d] = %f\n", w, tIn[w]);
-                         printf("c tIn[%d] = %f\n", t, tIn[t]);
-                         printf("c tIn[%d] = %f\n", b, tIn[b]);
-                         printf("c dt = %f\n", c, dt);
-                         printf("c Cap = %f\n", c, Cap);
-                         printf("c dt/Cap = %f\n", c, dt/Cap);
-                         printf("c pIn[%d] = %f\n", c, pIn[c]);
-                         printf("c ct = %f\n", ct);
-                         printf("c amb_temp = %f\n", amb_temp);
-                         printf("c tOut[%d] = %f\n", c, tOut[c]);
-                     }*/
+                    // if(c == 0 && z == 0 && i == 0){
+                    //     printf("c tIn[%d] = %f\n", c, tIn[c]);
+                    //     printf("n tIn[%d] = %f\n", n, tIn[n]);
+                    //     printf("s tIn[%d] = %f\n", s, tIn[s]);
+                    //     printf("e tIn[%d] = %f\n", e, tIn[e]);
+                    //     printf("w tIn[%d] = %f\n", w, tIn[w]);
+                    //     printf("c tIn[%d] = %f\n", t, tIn[t]);
+                    //     printf("c tIn[%d] = %f\n", b, tIn[b]);
+                    //     printf("c dt = %f\n", c, dt);
+                    //     printf("c Cap = %f\n", c, Cap);
+                    //     printf("c dt/Cap = %f\n", c, dt/Cap);
+                    //     printf("c pIn[%d] = %f\n", c, pIn[c]);
+                    //     printf("c ct = %f\n", ct);
+                    //     printf("c amb_temp = %f\n", amb_temp);
+                    //     printf("c tOut[%d] = %f\n", c, tOut[c]);
+                    // }
                 }
         float *temp = tIn;
         tIn = tOut;
@@ -220,37 +223,39 @@ void usage(int argc, char **argv)
 
 int main(int argc, char** argv)
 {
-    /*if (argc != 7)
-    {
-        usage(argc,argv);
-    }*/
+    // if (argc != 7)
+    // {
+    //     usage(argc,argv);
+    // }
+    fprintf(stderr, "Starting...\n");
+    // char cwd[1024];
+    // if (getcwd(cwd, sizeof(cwd)) != NULL) {
+    //     fprintf(stderr, "Current working directory: %s\n", cwd);
+    // } else {
+    //     perror("getcwd() error");
+    //     return 1;
+    // }
+    char *pfile, *tfile; //*ofile; *testFile;
+    char powerFilePath[18] = "./data/power_64x8";
+    char tempFilePath[17] = "./data/temp_64x8";
+    
+    int iterations = ITERATIONS;
 
-    char *pfile, *tfile, *ofile;// *testFile;
-    /*int iterations = ITERATIONS;
+    pfile = argv[1];
+    fprintf(stderr, "pfile is %s\n", pfile);
+    // // instead of using argv, have pfile point to the path ./data/power_64x8
+    // FILE* pfile = fopen(powerFilePath,"r");
+    // // tfile refers to the path ./data/temp_64x8
 
-    pfile = argv[4];
-    tfile = argv[5];
-    ofile = argv[6];
+    tfile = argv[2];
+    fprintf(stderr, "tfile is %s\n", tfile);
+    // FILE* tfile = fopen(tempFilePath,"r");
+    //ofile = argv[6];
     //testFile = argv[7];
-    int numCols = atoi(argv[1]);
-    int numRows = atoi(argv[1]);
-    int layers = atoi(argv[2]);
-*/
-    int iterations = DEFAULT_ITERATIONS;
+    int numCols = GRID_COLS;
+    int numRows = GRID_ROWS;
+    int layers = LAYERS;
 
-
-
-        pfile = DEFAULT_POWER_FILE;
-
-	    tfile = DEFAULT_TEMP_FILE;
-
-	        ofile = DEFAULT_OUTPUT_FILE;
-
-		    int numCols = DEFAULT_ROWS_COLS;
-
-		        int numRows = DEFAULT_ROWS_COLS;
-
-			    int layers = DEFAULT_LAYERS;
     /* calculating parameters*/
 
     float dx = chip_height/numRows;
@@ -270,7 +275,7 @@ int main(int argc, char** argv)
     float *powerIn, *tempOut, *tempIn, *tempCopy;// *pCopy;
     //    float *d_powerIn, *d_tempIn, *d_tempOut;
     int size = numCols * numRows * layers;
-
+    
     powerIn = (float*)calloc(size, sizeof(float));
     tempCopy = (float*)malloc(size * sizeof(float));
     tempIn = (float*)calloc(size,sizeof(float));
@@ -280,7 +285,7 @@ int main(int argc, char** argv)
     float* answer = (float*)calloc(size, sizeof(float));
 
     // outCopy = (float*)calloc(size, sizeof(float));
-    readinput(powerIn,numRows, numCols, layers,pfile);
+    readinput(powerIn,numRows, numCols, layers, pfile);
     readinput(tempIn, numRows, numCols, layers, tfile);
     // print out all of tempIn 
     
@@ -297,30 +302,38 @@ int main(int argc, char** argv)
     computeTempCPU(powerIn, tempCopy, answer, numCols, numRows, layers, Cap, Rx, Ry, Rz, dt,iterations);
     //float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    printf("Cap is %f\n", Cap);
-    hotspot_HW(tempOut, tempIn, powerIn, layers, Cap, Rx, Ry, Rz, dt, numCols, numRows, iterations, dx, dy, dz, t_chip, chip_height, chip_width, amb_temp);
-    writeoutputHW(tempIn,numRows, numCols, layers, ofile);
+    //printf("Cap is %f\n", Cap);
+    hotspot_HW(tempOut, tempIn, powerIn, Cap, Rx, Ry, Rz, dt, amb_temp);
+    //writeoutputHW(tempIn,numRows, numCols, layers);
     //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
 
     for (int k = 0; k < 8; k++)
-    {
+
     for (int i = 0; i < 64; i++)
-    {
+
       for (int j = 0; j < 64; j++)
 
       {
         // check if the hardware and software outputs match, not the accuracies
-        if (abs(tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]-answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])/answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]>0.01)
+        //if (tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] != answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])
+        //if the percentage error between tempIn and answer is greater than 1%, then print out the error
+        if (fabs(tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] - answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]) > 0.01 * fabs(answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]))
         {
           printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
           return -1;
         }
+        
+        
+        //{
+          
+          //printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+          //return -1;
+        //}
 
         
 
       }
-}
-}
+    printf("TEST PASSED!\n");
     // if (acc1 != acc2){
     //   printf("Test failed. Results not matching: acc_sw = %e, acc_hw = %e\n", acc1, acc2);
     //   return -1;
