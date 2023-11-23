@@ -1,10 +1,10 @@
 #ifndef _3DHLS_H
 #define _3DHLS_H
 
-#define GRID_ROWS 64
-#define GRID_COLS 64
-#define LAYERS 8
-#define ITERATIONS 1000
+#define GRID_ROWS 16
+#define GRID_COLS 16
+#define LAYERS 3
+#define ITERATIONS 10
 
 #define STR_SIZE (256)
 #define MAX_PD	(3.0e6)

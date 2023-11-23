@@ -290,7 +290,10 @@ int main(int argc, char** argv)
     // print out all of tempIn 
     
     
-
+    printf("number of cols is %d\n", GRID_COLS);
+    printf("number of rows is %d\n", GRID_ROWS);
+    printf("number of layers is %d\n", LAYERS);
+    printf("size is %d\n", size);
     memcpy(tempCopy,tempIn, size * sizeof(float));
 
     struct timeval start, stop;
@@ -313,11 +316,11 @@ int main(int argc, char** argv)
     //writeoutputHW(tempIn,numRows, numCols, layers);
     //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
 
-    for (int k = 0; k < 8; k++)
+    for (int k = 0; k < LAYERS; k++)
 
-    for (int i = 0; i < 64; i++)
+    for (int i = 0; i < GRID_COLS; i++)
 
-      for (int j = 0; j < 64; j++)
+      for (int j = 0; j < GRID_ROWS; j++)
 
       {
         // check if the hardware and software outputs match, not the accuracies
