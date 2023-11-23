@@ -1,0 +1,1603 @@
+<profile>
+    <ReportVersion>
+        <Version>2020.2.2</Version>
+    </ReportVersion>
+    <UserAssignments>
+        <unit>ns</unit>
+        <ProductFamily>virtexuplus</ProductFamily>
+        <Part>xcu50-fsvh2104-2-e</Part>
+        <TopModelName>hotspot_HW</TopModelName>
+        <TargetClockPeriod>3.33</TargetClockPeriod>
+        <ClockUncertainty>0.90</ClockUncertainty>
+        <FlowTarget>vivado</FlowTarget>
+    </UserAssignments>
+    <PerformanceEstimates>
+        <PipelineType>none</PipelineType>
+        <SummaryOfTimingAnalysis>
+            <unit>ns</unit>
+            <EstimatedClockPeriod>2.431</EstimatedClockPeriod>
+        </SummaryOfTimingAnalysis>
+        <SummaryOfOverallLatency>
+            <unit>clock cycles</unit>
+            <Best-caseLatency>262837560</Best-caseLatency>
+            <Average-caseLatency>262837560</Average-caseLatency>
+            <Worst-caseLatency>262837560</Worst-caseLatency>
+            <Best-caseRealTimeLatency>0.875 sec</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>0.875 sec</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>0.875 sec</Worst-caseRealTimeLatency>
+            <Interval-min>262837561</Interval-min>
+            <Interval-max>262837561</Interval-max>
+        </SummaryOfOverallLatency>
+        <SummaryOfLoopLatency>
+            <VITIS_LOOP_140_1>
+                <TripCount>500</TripCount>
+                <Latency>262837500</Latency>
+                <AbsoluteTimeLatency>875248854</AbsoluteTimeLatency>
+                <IterationLatency>525675</IterationLatency>
+                <VITIS_LOOP_142_2>
+                    <TripCount>8</TripCount>
+                    <Latency>262840</Latency>
+                    <AbsoluteTimeLatency>875257</AbsoluteTimeLatency>
+                    <IterationLatency>32855</IterationLatency>
+                    <VITIS_LOOP_142_2.1>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.1>
+                    <VITIS_LOOP_142_2.2>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.2>
+                    <VITIS_LOOP_142_2.3>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.3>
+                    <VITIS_LOOP_142_2.4>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.4>
+                    <VITIS_LOOP_142_2.5>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.5>
+                    <VITIS_LOOP_142_2.6>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.6>
+                    <VITIS_LOOP_142_2.7>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.7>
+                    <VITIS_LOOP_142_2.8>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.8>
+                    <VITIS_LOOP_142_2.9>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.9>
+                    <VITIS_LOOP_142_2.10>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_142_2.10>
+                    <VITIS_LOOP_142_2.11>
+                        <TripCount>4096</TripCount>
+                        <Latency>4097</Latency>
+                        <AbsoluteTimeLatency>13643</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                    </VITIS_LOOP_142_2.11>
+                </VITIS_LOOP_142_2>
+                <VITIS_LOOP_173_3>
+                    <TripCount>8</TripCount>
+                    <Latency>262832</Latency>
+                    <AbsoluteTimeLatency>875230</AbsoluteTimeLatency>
+                    <IterationLatency>32854</IterationLatency>
+                    <VITIS_LOOP_173_3.1>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.1>
+                    <VITIS_LOOP_173_3.2>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.2>
+                    <VITIS_LOOP_173_3.3>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.3>
+                    <VITIS_LOOP_173_3.4>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.4>
+                    <VITIS_LOOP_173_3.5>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.5>
+                    <VITIS_LOOP_173_3.6>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.6>
+                    <VITIS_LOOP_173_3.7>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.7>
+                    <VITIS_LOOP_173_3.8>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.8>
+                    <VITIS_LOOP_173_3.9>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.9>
+                    <VITIS_LOOP_173_3.10>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>1</PipelineDepth>
+                    </VITIS_LOOP_173_3.10>
+                    <VITIS_LOOP_173_3.11>
+                        <TripCount>4096</TripCount>
+                        <Latency>4096</Latency>
+                        <AbsoluteTimeLatency>13639</AbsoluteTimeLatency>
+                        <PipelineII>1</PipelineII>
+                        <PipelineDepth>2</PipelineDepth>
+                    </VITIS_LOOP_173_3.11>
+                </VITIS_LOOP_173_3>
+            </VITIS_LOOP_140_1>
+        </SummaryOfLoopLatency>
+    </PerformanceEstimates>
+    <AreaEstimates>
+        <Resources>
+            <BRAM_18K>0</BRAM_18K>
+            <DSP>34</DSP>
+            <FF>5765</FF>
+            <LUT>4795</LUT>
+            <URAM>0</URAM>
+        </Resources>
+        <AvailableResources>
+            <BRAM_18K>2688</BRAM_18K>
+            <DSP>5952</DSP>
+            <FF>1743360</FF>
+            <LUT>871680</LUT>
+            <URAM>640</URAM>
+        </AvailableResources>
+    </AreaEstimates>
+    <InterfaceSummary>
+        <RtlPorts>
+            <name>ap_clk</name>
+            <Object>hotspot_HW</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_rst</name>
+            <Object>hotspot_HW</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_start</name>
+            <Object>hotspot_HW</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_done</name>
+            <Object>hotspot_HW</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_idle</name>
+            <Object>hotspot_HW</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>ap_ready</name>
+            <Object>hotspot_HW</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_hs</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result</name>
+            <Object>result</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_vld</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>result_ap_vld</name>
+            <Object>result</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_vld</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>temp_i</name>
+            <Object>temp</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_ovld</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>temp_o</name>
+            <Object>temp</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_ovld</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>temp_o_ap_vld</name>
+            <Object>temp</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_ovld</IOProtocol>
+            <IOConfig/>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>power</name>
+            <Object>power</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>Cap</name>
+            <Object>Cap</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>float</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>Rx</name>
+            <Object>Rx</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>float</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>Ry</name>
+            <Object>Ry</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>float</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>Rz</name>
+            <Object>Rz</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>float</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>dt</name>
+            <Object>dt</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>float</CType>
+        </RtlPorts>
+        <RtlPorts>
+            <name>amb_temp</name>
+            <Object>amb_temp</Object>
+            <Type>scalar</Type>
+            <Scope/>
+            <IOProtocol>ap_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>float</CType>
+        </RtlPorts>
+    </InterfaceSummary>
+    <RTLDesignHierarchy>
+        <TopModule>
+            <ModuleName>hotspot_HW</ModuleName>
+            <InstancesList>
+                <Instance>
+                    <InstName>grp_compute_fu_821</InstName>
+                    <ModuleName>compute</ModuleName>
+                    <IsCompInst>true</IsCompInst>
+                    <ID>821</ID>
+                </Instance>
+            </InstancesList>
+        </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+        <Module>
+            <Name>compute</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>3.33</TargetClockPeriod>
+                    <ClockUncertainty>0.90</ClockUncertainty>
+                    <EstimatedClockPeriod>2.390</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>12362</Best-caseLatency>
+                    <Average-caseLatency>12362</Average-caseLatency>
+                    <Worst-caseLatency>12362</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>41.165 us</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>41.165 us</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>41.165 us</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>12362</PipelineInitiationInterval>
+                    <PipelineType>none</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_28_1_VITIS_LOOP_29_2>
+                        <Name>VITIS_LOOP_28_1_VITIS_LOOP_29_2</Name>
+                        <TripCount>4096</TripCount>
+                        <Latency>12349</Latency>
+                        <AbsoluteTimeLatency>41.122 us</AbsoluteTimeLatency>
+                        <PipelineII>3</PipelineII>
+                        <PipelineDepth>65</PipelineDepth>
+                    </VITIS_LOOP_28_1_VITIS_LOOP_29_2>
+                </SummaryOfLoopLatency>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <DSP>15</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>2909</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>1784</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <InterfaceSummary>
+                <RtlPorts>
+                    <name>ap_clk</name>
+                    <Object>compute</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_rst</name>
+                    <Object>compute</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_start</name>
+                    <Object>compute</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_done</name>
+                    <Object>compute</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_idle</name>
+                    <Object>compute</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_ready</name>
+                    <Object>compute</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>result_buf_address0</name>
+                    <Object>result_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>12</Bits>
+                    <Attribute>address</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>result_buf_ce0</name>
+                    <Object>result_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>result_buf_we0</name>
+                    <Object>result_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>result_buf_d0</name>
+                    <Object>result_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>center_buf_address0</name>
+                    <Object>center_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>12</Bits>
+                    <Attribute>address</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>center_buf_ce0</name>
+                    <Object>center_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>center_buf_q0</name>
+                    <Object>center_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>center_buf_address1</name>
+                    <Object>center_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>12</Bits>
+                    <Attribute>address</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>center_buf_ce1</name>
+                    <Object>center_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>center_buf_q1</name>
+                    <Object>center_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>top_buf_address0</name>
+                    <Object>top_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>12</Bits>
+                    <Attribute>address</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>top_buf_ce0</name>
+                    <Object>top_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>top_buf_q0</name>
+                    <Object>top_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>bottom_buf_address0</name>
+                    <Object>bottom_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>12</Bits>
+                    <Attribute>address</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>bottom_buf_ce0</name>
+                    <Object>bottom_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>bottom_buf_q0</name>
+                    <Object>bottom_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>power_buf_address0</name>
+                    <Object>power_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>12</Bits>
+                    <Attribute>address</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>power_buf_ce0</name>
+                    <Object>power_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>power_buf_q0</name>
+                    <Object>power_buf</Object>
+                    <Type>array</Type>
+                    <Scope/>
+                    <IOProtocol>ap_memory</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>cc</name>
+                    <Object>cc</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>cn</name>
+                    <Object>cn</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>cs</name>
+                    <Object>cs</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ce_r</name>
+                    <Object>ce_r</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>cw</name>
+                    <Object>cw</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ct</name>
+                    <Object>ct</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>cb</name>
+                    <Object>cb</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>Cap</name>
+                    <Object>Cap</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>dt</name>
+                    <Object>dt</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>amb_temp</name>
+                    <Object>amb_temp</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                </RtlPorts>
+            </InterfaceSummary>
+        </Module>
+        <Module>
+            <Name>hotspot_HW</Name>
+            <PerformanceEstimates>
+                <SummaryOfTimingAnalysis>
+                    <TargetClockPeriod>3.33</TargetClockPeriod>
+                    <ClockUncertainty>0.90</ClockUncertainty>
+                    <EstimatedClockPeriod>2.431</EstimatedClockPeriod>
+                </SummaryOfTimingAnalysis>
+                <SummaryOfOverallLatency>
+                    <Best-caseLatency>262837560</Best-caseLatency>
+                    <Average-caseLatency>262837560</Average-caseLatency>
+                    <Worst-caseLatency>262837560</Worst-caseLatency>
+                    <Best-caseRealTimeLatency>0.875 sec</Best-caseRealTimeLatency>
+                    <Average-caseRealTimeLatency>0.875 sec</Average-caseRealTimeLatency>
+                    <Worst-caseRealTimeLatency>0.875 sec</Worst-caseRealTimeLatency>
+                    <PipelineInitiationInterval>262837561</PipelineInitiationInterval>
+                    <PipelineType>none</PipelineType>
+                </SummaryOfOverallLatency>
+                <SummaryOfLoopLatency>
+                    <VITIS_LOOP_140_1>
+                        <Name>VITIS_LOOP_140_1</Name>
+                        <TripCount>500</TripCount>
+                        <Latency>262837500</Latency>
+                        <AbsoluteTimeLatency>0.875 sec</AbsoluteTimeLatency>
+                        <IterationLatency>525675</IterationLatency>
+                        <PipelineDepth>525675</PipelineDepth>
+                        <VITIS_LOOP_142_2>
+                            <Name>VITIS_LOOP_142_2</Name>
+                            <TripCount>8</TripCount>
+                            <Latency>262840</Latency>
+                            <AbsoluteTimeLatency>0.875 ms</AbsoluteTimeLatency>
+                            <IterationLatency>32855</IterationLatency>
+                            <PipelineDepth>32855</PipelineDepth>
+                            <VITIS_LOOP_142_2.1>
+                                <Name>VITIS_LOOP_142_2.1</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.1>
+                            <VITIS_LOOP_142_2.2>
+                                <Name>VITIS_LOOP_142_2.2</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.2>
+                            <VITIS_LOOP_142_2.3>
+                                <Name>VITIS_LOOP_142_2.3</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.3>
+                            <VITIS_LOOP_142_2.4>
+                                <Name>VITIS_LOOP_142_2.4</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.4>
+                            <VITIS_LOOP_142_2.5>
+                                <Name>VITIS_LOOP_142_2.5</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.5>
+                            <VITIS_LOOP_142_2.6>
+                                <Name>VITIS_LOOP_142_2.6</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.6>
+                            <VITIS_LOOP_142_2.7>
+                                <Name>VITIS_LOOP_142_2.7</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.7>
+                            <VITIS_LOOP_142_2.8>
+                                <Name>VITIS_LOOP_142_2.8</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.8>
+                            <VITIS_LOOP_142_2.9>
+                                <Name>VITIS_LOOP_142_2.9</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.9>
+                            <VITIS_LOOP_142_2.10>
+                                <Name>VITIS_LOOP_142_2.10</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_142_2.10>
+                            <VITIS_LOOP_142_2.11>
+                                <Name>VITIS_LOOP_142_2.11</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4097</Latency>
+                                <AbsoluteTimeLatency>13.643 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>2</PipelineDepth>
+                            </VITIS_LOOP_142_2.11>
+                        </VITIS_LOOP_142_2>
+                        <VITIS_LOOP_173_3>
+                            <Name>VITIS_LOOP_173_3</Name>
+                            <TripCount>8</TripCount>
+                            <Latency>262832</Latency>
+                            <AbsoluteTimeLatency>0.875 ms</AbsoluteTimeLatency>
+                            <IterationLatency>32854</IterationLatency>
+                            <PipelineDepth>32854</PipelineDepth>
+                            <VITIS_LOOP_173_3.1>
+                                <Name>VITIS_LOOP_173_3.1</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.1>
+                            <VITIS_LOOP_173_3.2>
+                                <Name>VITIS_LOOP_173_3.2</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.2>
+                            <VITIS_LOOP_173_3.3>
+                                <Name>VITIS_LOOP_173_3.3</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.3>
+                            <VITIS_LOOP_173_3.4>
+                                <Name>VITIS_LOOP_173_3.4</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.4>
+                            <VITIS_LOOP_173_3.5>
+                                <Name>VITIS_LOOP_173_3.5</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.5>
+                            <VITIS_LOOP_173_3.6>
+                                <Name>VITIS_LOOP_173_3.6</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.6>
+                            <VITIS_LOOP_173_3.7>
+                                <Name>VITIS_LOOP_173_3.7</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.7>
+                            <VITIS_LOOP_173_3.8>
+                                <Name>VITIS_LOOP_173_3.8</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.8>
+                            <VITIS_LOOP_173_3.9>
+                                <Name>VITIS_LOOP_173_3.9</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.9>
+                            <VITIS_LOOP_173_3.10>
+                                <Name>VITIS_LOOP_173_3.10</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>1</PipelineDepth>
+                            </VITIS_LOOP_173_3.10>
+                            <VITIS_LOOP_173_3.11>
+                                <Name>VITIS_LOOP_173_3.11</Name>
+                                <TripCount>4096</TripCount>
+                                <Latency>4096</Latency>
+                                <AbsoluteTimeLatency>13.640 us</AbsoluteTimeLatency>
+                                <PipelineII>1</PipelineII>
+                                <PipelineDepth>2</PipelineDepth>
+                            </VITIS_LOOP_173_3.11>
+                        </VITIS_LOOP_173_3>
+                    </VITIS_LOOP_140_1>
+                </SummaryOfLoopLatency>
+            </PerformanceEstimates>
+            <AreaEstimates>
+                <Resources>
+                    <BRAM_18K>0</BRAM_18K>
+                    <AVAIL_BRAM>2688</AVAIL_BRAM>
+                    <UTIL_BRAM>0</UTIL_BRAM>
+                    <DSP>34</DSP>
+                    <AVAIL_DSP>5952</AVAIL_DSP>
+                    <UTIL_DSP>~0</UTIL_DSP>
+                    <FF>5765</FF>
+                    <AVAIL_FF>1743360</AVAIL_FF>
+                    <UTIL_FF>~0</UTIL_FF>
+                    <LUT>4795</LUT>
+                    <AVAIL_LUT>871680</AVAIL_LUT>
+                    <UTIL_LUT>~0</UTIL_LUT>
+                    <URAM>0</URAM>
+                    <AVAIL_URAM>640</AVAIL_URAM>
+                    <UTIL_URAM>0</UTIL_URAM>
+                </Resources>
+            </AreaEstimates>
+            <InterfaceSummary>
+                <RtlPorts>
+                    <name>ap_clk</name>
+                    <Object>hotspot_HW</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_rst</name>
+                    <Object>hotspot_HW</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_start</name>
+                    <Object>hotspot_HW</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_done</name>
+                    <Object>hotspot_HW</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_idle</name>
+                    <Object>hotspot_HW</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>ap_ready</name>
+                    <Object>hotspot_HW</Object>
+                    <Type>return value</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ctrl_hs</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>result</name>
+                    <Object>result</Object>
+                    <Type>pointer</Type>
+                    <Scope/>
+                    <IOProtocol>ap_vld</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>int</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>result_ap_vld</name>
+                    <Object>result</Object>
+                    <Type>pointer</Type>
+                    <Scope/>
+                    <IOProtocol>ap_vld</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                    <CType>int</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>temp_i</name>
+                    <Object>temp</Object>
+                    <Type>pointer</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ovld</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>int</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>temp_o</name>
+                    <Object>temp</Object>
+                    <Type>pointer</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ovld</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>int</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>temp_o_ap_vld</name>
+                    <Object>temp</Object>
+                    <Type>pointer</Type>
+                    <Scope/>
+                    <IOProtocol>ap_ovld</IOProtocol>
+                    <IOConfig/>
+                    <Dir>out</Dir>
+                    <Bits>1</Bits>
+                    <Attribute>control</Attribute>
+                    <CType>int</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>power</name>
+                    <Object>power</Object>
+                    <Type>pointer</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>int</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>Cap</name>
+                    <Object>Cap</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>float</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>Rx</name>
+                    <Object>Rx</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>float</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>Ry</name>
+                    <Object>Ry</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>float</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>Rz</name>
+                    <Object>Rz</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>float</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>dt</name>
+                    <Object>dt</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>float</CType>
+                </RtlPorts>
+                <RtlPorts>
+                    <name>amb_temp</name>
+                    <Object>amb_temp</Object>
+                    <Type>scalar</Type>
+                    <Scope/>
+                    <IOProtocol>ap_none</IOProtocol>
+                    <IOConfig/>
+                    <Dir>in</Dir>
+                    <Bits>32</Bits>
+                    <Attribute>data</Attribute>
+                    <CType>float</CType>
+                </RtlPorts>
+            </InterfaceSummary>
+        </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+    <Args>
+        <Arg ArgName="result" index="0" direction="inout" srcType="float*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="result" name="result" usage="data" direction="out"/>
+                <hwRef type="port" interface="result_ap_vld" name="result_ap_vld" usage="control" direction="inout"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="temp" index="1" direction="inout" srcType="float*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="temp_i" name="temp_i" usage="data" direction="in"/>
+                <hwRef type="port" interface="temp_o" name="temp_o" usage="data" direction="out"/>
+                <hwRef type="port" interface="temp_o_ap_vld" name="temp_o_ap_vld" usage="control" direction="inout"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="power" index="2" direction="in" srcType="float*" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="power" name="power" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="Cap" index="3" direction="in" srcType="float" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="Cap" name="Cap" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="Rx" index="4" direction="in" srcType="float" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="Rx" name="Rx" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="Ry" index="5" direction="in" srcType="float" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="Ry" name="Ry" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="Rz" index="6" direction="in" srcType="float" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="Rz" name="Rz" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="dt" index="7" direction="in" srcType="float" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="dt" name="dt" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+        <Arg ArgName="amb_temp" index="8" direction="in" srcType="float" srcSize="32">
+            <hwRefs>
+                <hwRef type="port" interface="amb_temp" name="amb_temp" usage="data" direction="in"/>
+            </hwRefs>
+        </Arg>
+    </Args>
+    <Interfaces>
+        <Interface InterfaceName="amb_temp" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="amb_temp">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>amb_temp</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="amb_temp"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="ap_clk" type="clock" busTypeName="clock" mode="slave">
+            <busParams>
+                <busParam busParamName="ASSOCIATED_RESET">ap_rst</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_clk">CLK</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_clk</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_ctrl" type="ap_ctrl" busTypeName="acc_handshake" mode="slave">
+            <portMaps>
+                <portMap portMapName="ap_start">start</portMap>
+                <portMap portMapName="ap_done">done</portMap>
+                <portMap portMapName="ap_idle">idle</portMap>
+                <portMap portMapName="ap_ready">ready</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_done</port>
+                <port>ap_idle</port>
+                <port>ap_ready</port>
+                <port>ap_start</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="ap_rst" type="reset" busTypeName="reset" mode="slave">
+            <busParams>
+                <busParam busParamName="POLARITY">ACTIVE_HIGH</busParam>
+            </busParams>
+            <portMaps>
+                <portMap portMapName="ap_rst">RST</portMap>
+            </portMaps>
+            <ports>
+                <port>ap_rst</port>
+            </ports>
+        </Interface>
+        <Interface InterfaceName="Cap" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="Cap">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>Cap</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="Cap"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="dt" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="dt">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>dt</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="dt"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="power" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="power">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>power</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="power"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="result" type="data" busTypeName="data" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="result">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>result</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="result"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="Rx" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="Rx">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>Rx</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="Rx"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="Ry" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="Ry">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>Ry</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="Ry"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="Rz" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="Rz">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>Rz</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="Rz"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="temp_i" type="data" busTypeName="data" mode="slave" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="temp_i">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>temp_i</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="temp"/>
+            </constraints>
+        </Interface>
+        <Interface InterfaceName="temp_o" type="data" busTypeName="data" mode="master" dataWidth="32">
+            <portMaps>
+                <portMap portMapName="temp_o">DATA</portMap>
+            </portMaps>
+            <ports>
+                <port>temp_o</port>
+            </ports>
+            <constraints>
+                <constraint constraint_type="pragma interface" mode="ap_none" register_option="0" argName="temp"/>
+            </constraints>
+        </Interface>
+    </Interfaces>
+    <ReportHWInterface>
+        <section name="HW Interfaces" level="0">
+            <item name="REGISTER">
+                <table>
+                    <keys size="3">Interface, Mode, Bitwidth</keys>
+                    <column name="Cap">ap_none, 32</column>
+                    <column name="Rx">ap_none, 32</column>
+                    <column name="Ry">ap_none, 32</column>
+                    <column name="Rz">ap_none, 32</column>
+                    <column name="amb_temp">ap_none, 32</column>
+                    <column name="dt">ap_none, 32</column>
+                    <column name="power">ap_none, 32</column>
+                    <column name="result">ap_none, 32</column>
+                    <column name="temp_i">ap_none, 32</column>
+                    <column name="temp_o">ap_none, 32</column>
+                </table>
+            </item>
+            <item name="TOP LEVEL CONTROL">
+                <table>
+                    <keys size="3">Interface, Type, Ports</keys>
+                    <column name="ap_clk">clock, ap_clk</column>
+                    <column name="ap_rst">reset, ap_rst</column>
+                    <column name="ap_ctrl">ap_ctrl_hs, ap_done ap_idle ap_ready ap_start</column>
+                </table>
+            </item>
+        </section>
+    </ReportHWInterface>
+    <ReportSWInterface>
+        <section name="SW I/O Information" level="0">
+            <item name="Top Function Arguments">
+                <table isCollapsed="1">
+                    <keys size="3">Argument, Direction, Datatype</keys>
+                    <column name="result">inout, float*</column>
+                    <column name="temp">inout, float*</column>
+                    <column name="power">in, float*</column>
+                    <column name="Cap">in, float</column>
+                    <column name="Rx">in, float</column>
+                    <column name="Ry">in, float</column>
+                    <column name="Rz">in, float</column>
+                    <column name="dt">in, float</column>
+                    <column name="amb_temp">in, float</column>
+                </table>
+            </item>
+            <item name="SW-to-HW Mapping">
+                <table isCollapsed="1">
+                    <keys size="3">Argument, HW Name, HW Type</keys>
+                    <column name="result">result, port</column>
+                    <column name="result">result_ap_vld, port</column>
+                    <column name="temp">temp_i, port</column>
+                    <column name="temp">temp_o, port</column>
+                    <column name="temp">temp_o_ap_vld, port</column>
+                    <column name="power">power, port</column>
+                    <column name="Cap">Cap, port</column>
+                    <column name="Rx">Rx, port</column>
+                    <column name="Ry">Ry, port</column>
+                    <column name="Rz">Rz, port</column>
+                    <column name="dt">dt, port</column>
+                    <column name="amb_temp">amb_temp, port</column>
+                </table>
+            </item>
+        </section>
+    </ReportSWInterface>
+    <ReportBurst>
+        <section name="M_AXI Burst Information" level="0"/>
+    </ReportBurst>
+</profile>
+

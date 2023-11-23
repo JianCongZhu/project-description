@@ -1,0 +1,1 @@
+set ::AESL_AUTOSIM::gTopFileName /local-scratch/localhome/cwa230/ensc453_hotspot3D/FPGA/comp-opt/hotspot.prj/solution1/./sim/autowrap/testbench/3dHLS.cpp_pre.cpp.tb.cpp
