@@ -23,7 +23,7 @@ void buffer_load(float *dest, float *source);
 void buffer_store(float *dest, float *source);
 void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
              float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int iteration);
-void hotspot_HW(float *result, float *temp, float *power, float Cap, float Rx, float Ry, float Rz, float dt, float amb_temp);
+void hotspot_HW(float result[GRID_ROWS* GRID_COLS * LAYERS], float temp[GRID_ROWS * GRID_COLS * LAYERS], float power[GRID_ROWS * GRID_COLS * LAYERS], float Cap, float Rx, float Ry, float Rz, float dt, float amb_temp);
 void fatal(char *s);
 void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file);
 void writeoutputHW(float *vect, int grid_rows, int grid_cols, int layers);

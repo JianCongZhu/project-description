@@ -228,13 +228,13 @@ int main(int argc, char** argv)
     //     usage(argc,argv);
     // }
     fprintf(stderr, "Starting...\n");
-    // char cwd[1024];
-    // if (getcwd(cwd, sizeof(cwd)) != NULL) {
-    //     fprintf(stderr, "Current working directory: %s\n", cwd);
-    // } else {
-    //     perror("getcwd() error");
-    //     return 1;
-    // }
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        fprintf(stderr, "Current working directory: %s\n", cwd);
+    } else {
+        perror("getcwd() error");
+        return 1;
+    }
     char *pfile, *tfile; //*ofile; *testFile;
     // char powerFilePath[18] = "../data/power_64x8";
     // char tempFilePath[17] = "../data/temp_64x8";
@@ -303,6 +303,12 @@ int main(int argc, char** argv)
     //float acc1 = accuracy(tempOut,answer,numRows*numCols*layers);
 
     //printf("Cap is %f\n", Cap);
+    //print out all of tempIn
+    for (int i = 0; i < GRID_COLS*GRID_ROWS*LAYERS; i++)
+    {
+//        printf("tempIn toplevel[%d] = %f\n", i, tempIn[i]);
+    }
+    printf("tempIn pointer top level refers to %p\n", tempIn);
     hotspot_HW(tempOut, tempIn, powerIn, Cap, Rx, Ry, Rz, dt, amb_temp);
     //writeoutputHW(tempIn,numRows, numCols, layers);
     //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
