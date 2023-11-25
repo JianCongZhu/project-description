@@ -6,7 +6,7 @@
 #include <sys/time.h>
 #include <string.h>
 #include "3dHLS.h"
-
+#define PARA_FACTOR 16
 // float t_chip = 0.0005;
 // float chip_height = 0.016;
 // float chip_width = 0.016;
@@ -24,10 +24,18 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS
 
   int x, y, z;
   int c, w, e, n, s, b, t;
-
+  int i, j, k, ii;
+  #pragma HLS array_partition variable=center_buf cyclic factor=16 dim=0
+  #pragma HLS array_partition variable=top_buf cyclic factor=16 dim=0
+  #pragma HLS array_partition variable=bottom_buf cyclic factor=16 dim=0
+  #pragma HLS array_partition variable=result_buf cyclic factor=16 dim=0
+  #pragma HLS array_partition variable=power_buf cyclic factor=16 dim=0
+  
   for (y = 0; y < GRID_COLS; y++)
+  #pragma HLS pipeline II=1
     for (x = 0; x < GRID_ROWS; x++)
     {
+      #pragma HLS unroll
       // c = x + y * GRID_ROWS + z * GRID_ROWS * GRID_COLS;
       c = x + y * GRID_ROWS;
 
@@ -39,25 +47,70 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS
       // t = (z == LAYERS - 1) ? c : c + GRID_ROWS * GRID_COLS;
 
       result_buf[c] = center_buf[c] * cc + center_buf[n] * cn + center_buf[s] * cs + center_buf[e] * ce + center_buf[w] * cw + top_buf[c] * ct + bottom_buf[c] * cb + (dt / Cap) * power_buf[c] + ct * amb_temp;
-      // if(c == 0 && iteration == 0){
-      //   printf("c center_buf[%d] = %f\n", c, center_buf[c]);
-      //   printf("n center_buf[%d] = %f\n", n, center_buf[n]);
-      //   printf("s center_buf[%d] = %f\n", s, center_buf[s]);
-      //   printf("e center_buf[%d] = %f\n", e, center_buf[e]);
-      //   printf("w center_buf[%d] = %f\n", w, center_buf[w]);
-      //   printf("c top_buf[%d] = %f\n", c, top_buf[c]);
-      //   printf("c bottom_buf[%d] = %f\n", c, bottom_buf[c]);
-      //   printf("c dt = %f\n", c, dt);
-      //   printf("c Cap = %f\n", c, Cap);
-        
-      //   printf("c dt/Cap = %f\n", c, dt/Cap);
-      //   printf("c power_buf[%d] = %f\n", c, power_buf[c]);
-      //   printf("c ct = %f\n", ct);
-      //   printf("c amb_temp = %f\n", amb_temp);
-      //   printf("c hw_result[%d] = %f\n", c, result_buf[c]);
-      // }
+      
         
     }
+    /*
+    float temp_w[PARA_FACTOR], temp_e[PARA_FACTOR], temp_s[PARA_FACTOR], temp_n[PARA_FACTOR], temp_center[PARA_FACTOR], power_center[PARA_FACTOR], temp_b[PARA_FACTOR], temp_t[PARA_FACTOR] ;
+
+    float temp_rf1 [PARA_FACTOR][GRID_COLS * 2 / PARA_FACTOR + 1];
+    float temp_rf2 [PARA_FACTOR][GRID_COLS * 2 / PARA_FACTOR + 1];
+    float temp_rf3 [PARA_FACTOR][GRID_COLS * 2 / PARA_FACTOR + 1];
+
+    #pragma HLS array_partition variable=temp_rf1 complete dim=0
+    #pragma HLS array_partition variable=temp_rf2 complete dim=0
+    #pragma HLS array_partition variable=temp_rf3 complete dim=0
+
+    for (i = 0 ; i < GRID_COLS * 2 / PARA_FACTOR + 1; i++) {
+        #pragma HLS pipeline II=1
+        for (j = 0; j < PARA_FACTOR; j++) {
+            #pragma HLS unroll
+            temp_rf1[j][i] = center_buf[i*PARA_FACTOR + j];
+            temp_rf2[j][i] = top_buf[i*PARA_FACTOR + j];
+            temp_rf3[j][i] = bottom_buf[i*PARA_FACTOR + j];
+        }
+    }
+
+    for (i = 0; i < GRID_COLS / PARA_FACTOR * GRID_ROWS ; i++) {
+      #pragma HLS pipeline II=1
+      for (k = 0; k < PARA_FACTOR; k++) {
+        #pragma HLS unroll
+        //c = x + y * GRID_ROWS;
+        temp_center[k] = temp_rf1[k][GRID_COLS / PARA_FACTOR];
+        temp_t[k] = temp_rf2[k][GRID_COLS / PARA_FACTOR];
+        temp_b[k] = temp_rf3[k][GRID_COLS / PARA_FACTOR];
+
+        temp_w[k] = ((i % (GRID_COLS / PARA_FACTOR)) == 0 && k == 0) ? temp_center[k] : temp_rf1[(k - 1 + PARA_FACTOR) % PARA_FACTOR][GRID_COLS / PARA_FACTOR - (k == 0) ];
+        temp_e[k] = ((i % (GRID_COLS / PARA_FACTOR)) == (GRID_COLS / PARA_FACTOR - 1) && k == PARA_FACTOR - 1) ? temp_center[k] : temp_rf1[(k + 1 + PARA_FACTOR) % PARA_FACTOR][GRID_COLS / PARA_FACTOR + (k == (PARA_FACTOR - 1)) ];
+        temp_n[k] = (i < GRID_COLS / PARA_FACTOR) ? temp_center[k] : temp_rf1[k][0];
+        temp_s[k] = (i >= GRID_COLS / PARA_FACTOR * (GRID_ROWS - 1)) ? temp_center[k] : temp_rf1[k][GRID_COLS / PARA_FACTOR * 2];
+        // w = (x == 0) ? c : c - 1;
+        // e = (x == GRID_ROWS - 1) ? c : c + 1;
+        // n = (y == 0) ? c : c - GRID_ROWS;
+        // s = (y == GRID_COLS - 1) ? c : c + GRID_ROWS;
+        power_center[k] = power_buf[i * PARA_FACTOR + k];
+        // temp_b[k] = bottom_buf[i * PARA_FACTOR + k];
+        // temp_t[k] = top_buf[i * PARA_FACTOR + k];
+
+        result_buf[i * PARA_FACTOR + k] = temp_center[k] * cc + temp_n[k] * cn + temp_s[k] * cs \
+         + temp_e[k] * ce + temp_w[k] * cw + temp_t[k] * ct + temp_b[k] * cb \
+          + (dt / Cap) * power_center[k] + ct * amb_temp;
+        
+      }
+    }
+
+      for (k = 0; k < PARA_FACTOR; k++) {
+            #pragma hls unroll
+            for (j = 0; j < GRID_COLS * 2 / PARA_FACTOR; j++) {
+                #pragma hls unroll
+                temp_rf1[k][j] = temp_rf1[k][j + 1];
+                temp_rf2[k][j] = temp_rf2[k][j + 1];
+                temp_rf3[k][j] = temp_rf3[k][j + 1];
+            }
+            temp_rf1[k][GRID_COLS * 2 / PARA_FACTOR] = center_buf[GRID_COLS * 2 + (i + 1) * PARA_FACTOR + k];
+            temp_rf2[k][GRID_COLS * 2 / PARA_FACTOR] = top_buf[GRID_COLS * 2 + (i + 1) * PARA_FACTOR + k];
+            temp_rf3[k][GRID_COLS * 2 / PARA_FACTOR] = bottom_buf[GRID_COLS * 2 + (i + 1) * PARA_FACTOR + k];
+        }*/
 }
 
 void buffer_store(float *dest, float *source)
