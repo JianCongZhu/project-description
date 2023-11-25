@@ -1,0 +1,269 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2.2 (64-bit)
+  **** SW Build 3118627 on Tue Feb  9 05:13:49 MST 2021
+  **** IP Build 3115676 on Tue Feb  9 10:48:11 MST 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source /cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'cwa230' on host 'ensc-mmc-16.engineering.sfu.ca' (Linux_x86_64 version 5.4.0-125-generic) on Wed Nov 22 18:38:13 PST 2023
+INFO: [HLS 200-10] On os Ubuntu 18.04.6 LTS
+INFO: [HLS 200-10] In directory '/local-scratch/localhome/cwa230/ensc453_hotspot3D/FPGA/comp-opt'
+Sourcing Tcl script 'run_hls.tcl'
+INFO: [HLS 200-1510] Running: open_project hotspot.prj -reset 
+INFO: [HLS 200-10] Opening and resetting project '/local-scratch/localhome/cwa230/ensc453_hotspot3D/FPGA/comp-opt/hotspot.prj'.
+WARNING: [HLS 200-40] No /local-scratch/localhome/cwa230/ensc453_hotspot3D/FPGA/comp-opt/hotspot.prj/solution1/solution1.aps file found.
+INFO: [HLS 200-1510] Running: set_top hotspot_HW 
+INFO: [HLS 200-1510] Running: add_files 3dHLS.cpp 
+INFO: [HLS 200-10] Adding design file '3dHLS.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb 3dHLS-test.cpp 
+INFO: [HLS 200-10] Adding test bench file '3dHLS-test.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 
+INFO: [HLS 200-10] Creating and opening solution '/local-scratch/localhome/cwa230/ensc453_hotspot3D/FPGA/comp-opt/hotspot.prj/solution1'.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xcu50-fsvh2104-2-e 
+INFO: [HLS 200-10] Setting target device to 'xcu50-fsvh2104-2-e'
+INFO: [HLS 200-1510] Running: create_clock -period 3.33 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.33ns.
+INFO: [HLS 200-1510] Running: csim_design -O -argv ../../../../../../data/power_64x8 ../../../../../../data/temp_64x8 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../3dHLS-test.cpp in release mode
+   Compiling ../../../../3dHLS.cpp in release mode
+   Generating csim.exe
+../../../../3dHLS-test.cpp: In function ‘void readinput(float*, int, int, int, char*)’:
+../../../../3dHLS-test.cpp:31:42: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+       fatal( "The file was not opened\n" );
+                                          ^
+../../../../3dHLS-test.cpp:42:41: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+             fatal("Error reading file\n");
+                                         ^
+../../../../3dHLS-test.cpp:46:49: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+               fatal("not enough lines in file\n");
+                                                 ^
+../../../../3dHLS-test.cpp:51:44: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+               fatal("invalid file format\n");
+                                            ^
+Starting...
+pfile is ../../../../../../data/power_64x8
+tfile is ../../../../../../data/temp_64x8
+start hotspot
+# of iterations is 1000
+TEST PASSED!
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 1.39 seconds. CPU system time: 0.43 seconds. Elapsed time: 1.39 seconds; current allocated memory: 211.834 MB.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 212.054 MB.
+INFO: [HLS 200-10] Analyzing design file '3dHLS.cpp' ... 
+WARNING: [HLS 207-5301] unused parameter 'iteration': 3dHLS.cpp:22:151
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.44 seconds. CPU system time: 0.21 seconds. Elapsed time: 0.67 seconds; current allocated memory: 213.699 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-178] Inlining function 'buffer_load(float*, float*)' into 'hotspot_HW(float*, float*, float*, float, float, float, float, float, float)' (3dHLS.cpp:69:0)
+INFO: [HLS 214-178] Inlining function 'buffer_store(float*, float*)' into 'hotspot_HW(float*, float*, float*, float, float, float, float, float, float)' (3dHLS.cpp:69:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 3.3 seconds. CPU system time: 0.31 seconds. Elapsed time: 3.62 seconds; current allocated memory: 215.613 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 215.614 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 217.408 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 216.421 MB.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_29_2' (3dHLS.cpp:25) in function 'compute' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.1' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.2' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.3' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.4' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.5' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.6' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.7' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.8' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.9' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.10' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1.11' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.1' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.2' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.3' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.4' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.5' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.6' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.7' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.8' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.9' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.10' in function 'hotspot_HW' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.2.11' in function 'hotspot_HW' automatically.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.22 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.24 seconds; current allocated memory: 237.364 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_142_2' (3dHLS.cpp:118:10) in function 'hotspot_HW' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_173_3' (3dHLS.cpp:118:10) in function 'hotspot_HW' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_140_1' (3dHLS.cpp:118:7) in function 'hotspot_HW' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-960.html
+INFO: [XFORM 203-541] Flattening a loop nest 'VITIS_LOOP_28_1' (3dHLS.cpp:25:10) in function 'compute'.
+INFO: [HLS 200-472] Inferring partial write operation for 'center_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'top_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'center_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'top_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'center_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'top_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'power_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'center_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'top_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'center_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'top_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'center_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'top_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'bottom_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'power_buf' 
+INFO: [HLS 200-472] Inferring partial write operation for 'result_buf' (3dHLS.cpp:41:21)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.18 seconds. CPU system time: 0 seconds. Elapsed time: 0.18 seconds; current allocated memory: 241.230 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'hotspot_HW' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'compute' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_28_1_VITIS_LOOP_29_2'.
+WARNING: [HLS 200-885] Unable to schedule 'load' operation ('center_buf_load_2', 3dHLS.cpp:41) on array 'center_buf' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'center_buf'.
+Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-885.html
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 3, Depth = 65, loop 'VITIS_LOOP_28_1_VITIS_LOOP_29_2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.2 seconds. CPU system time: 0 seconds. Elapsed time: 0.19 seconds; current allocated memory: 241.944 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 242.713 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hotspot_HW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.4'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.4'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.5'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.5'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.6'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.6'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.2'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.3'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.3'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.7'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.7'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.8'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.8'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.9'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.9'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.10'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_142_2.10'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_142_2.11'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_142_2.11'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.4'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.4'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.5'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.5'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.6'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.6'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.1'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.2'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.3'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.3'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.7'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.7'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.8'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.8'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.9'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.9'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.10'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_3.10'
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_173_3.11'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_173_3.11'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.5 seconds. CPU system time: 0 seconds. Elapsed time: 0.5 seconds; current allocated memory: 243.790 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.49 seconds. CPU system time: 0 seconds. Elapsed time: 0.49 seconds; current allocated memory: 245.385 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'compute' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fdiv_32ns_32ns_32_12_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fmul_32ns_32ns_32_4_max_dsp_1': 3 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'compute'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.37 seconds. CPU system time: 0 seconds. Elapsed time: 0.36 seconds; current allocated memory: 246.690 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hotspot_HW' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/result' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/temp' to 'ap_ovld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/power' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/Cap' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/Rx' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/Ry' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/Rz' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/dt' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hotspot_HW/amb_temp' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'hotspot_HW' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Generating core module 'dadddsub_64ns_64ns_64_8_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'dmul_64ns_64ns_64_8_max_dsp_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fdiv_32ns_32ns_32_12_no_dsp_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fpext_32ns_64_2_no_dsp_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fptrunc_64ns_32_2_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hotspot_HW'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.39 seconds. CPU system time: 0 seconds. Elapsed time: 0.4 seconds; current allocated memory: 250.958 MB.
+INFO: [RTMG 210-278] Implementing memory 'hotspot_HW_top_buf_ram (RAM)' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'hotspot_HW_center_buf_ram (RAM)' using auto RAMs.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1.94 seconds. CPU system time: 0.04 seconds. Elapsed time: 1.99 seconds; current allocated memory: 262.936 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for hotspot_HW.
+INFO: [VLOG 209-307] Generating Verilog RTL for hotspot_HW.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 411.37 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 8.49 seconds. CPU system time: 0.58 seconds. Elapsed time: 9.12 seconds; current allocated memory: 263.412 MB.
+INFO: [HLS 200-1510] Running: cosim_design -O -argv ../../../../../../data/power_64x8 ../../../../../../data/temp_64x8 
+INFO: [COSIM 212-47] Using XSIM for RTL simulation.
+INFO: [COSIM 212-14] Instrumenting C test bench ...
+   Build using "/cvmfs/rcg.sfu.ca/sw/env/neutral/x86_64/TOOLS/XILINX/V2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/bin/g++"
+   Compiling 3dHLS.cpp_pre.cpp.tb.cpp
+   Compiling apatb_hotspot_HW.cpp
+   Compiling 3dHLS-test.cpp_pre.cpp.tb.cpp
+   Compiling apatb_hotspot_HW_ir.ll
+   Generating cosim.tv.exe
+INFO: [COSIM 212-302] Starting C TB testing ... 
+Starting...
+pfile is ../../../../../../data/power_64x8
+tfile is ../../../../../../data/temp_64x8
+start hotspot
+# of iterations is 1000
+ERROR: System recieved a signal named SIGSEGV and the program has to stop immediately!
+This signal was generated when a program tries to read or write outside the memory that is allocated for it, or to write memory that can only be read.
+Possible cause of this problem may be: 1) the depth setting of pointer type argument is much larger than it needed; 2)insufficient depth of array argument; 3)null pointer etc.
+Current execution stopped during CodeState = CALL_C_DUT.
+You can search CodeState variable name in apatb*.cpp file under ./sim/wrapc dir to locate the position.
+
+ERROR: [COSIM 212-360] Aborting co-simulation: C TB simulation failed.
+ERROR: [COSIM 212-320] C TB testing failed, stop generating test vectors. Please check C TB or re-run cosim.
+ERROR: [COSIM 212-5] *** C/RTL co-simulation file generation failed. ***
+ERROR: [COSIM 212-4] *** C/RTL co-simulation finished: FAIL ***
+INFO: [HLS 200-111] Finished Command cosim_design CPU user time: 3.07 seconds. CPU system time: 0.8 seconds. Elapsed time: 3.99 seconds; current allocated memory: 264.837 MB.
+command 'ap_source' returned error code
+    while executing
+"source run_hls.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 [list source $arg] "
+
+INFO: [HLS 200-112] Total CPU user time: 14.82 seconds. Total CPU system time: 2.34 seconds. Total elapsed time: 16.03 seconds; peak allocated memory: 262.936 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Wed Nov 22 18:38:29 2023...
