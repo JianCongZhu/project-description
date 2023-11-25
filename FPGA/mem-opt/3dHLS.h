@@ -5,6 +5,7 @@
 #define GRID_COLS 16
 #define LAYERS 3
 #define ITERATIONS 10
+#define PARA_FACTOR 16
 
 #define STR_SIZE (256)
 #define MAX_PD	(3.0e6)
@@ -15,15 +16,15 @@
 /* capacitance fitting factor	*/
 #define FACTOR_CHIP	0.5
 
-
+#include "mc.h"
 
 void usage(int argc, char **argv);
 void readinput(float *p, int row, int col, int layer, char *file);
-void buffer_load(float *dest, float *source);
-void buffer_store(float *dest, float *source);
+void buffer_load(float *dest, class ap_uint<LARGE_BUS> source);
+void buffer_store(class ap_uint<LARGE_BUS> dest, float *source);
 void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
              float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int iteration);
-void hotspot_HW(float result[GRID_ROWS* GRID_COLS * LAYERS], float temp[GRID_ROWS * GRID_COLS * LAYERS], float power[GRID_ROWS * GRID_COLS * LAYERS], float Cap, float Rx, float Ry, float Rz, float dt, float amb_temp);
+void hotspot_HW(class ap_uint<LARGE_BUS> result[GRID_ROWS* GRID_COLS * LAYERS], class ap_uint<LARGE_BUS> temp[GRID_ROWS * GRID_COLS * LAYERS], class ap_uint<LARGE_BUS> power[GRID_ROWS * GRID_COLS * LAYERS], float Cap, float Rx, float Ry, float Rz, float dt, float amb_temp);
 void fatal(char *s);
 void readinput(float *vect, int grid_rows, int grid_cols, int layers, char *file);
 void writeoutputHW(float *vect, int grid_rows, int grid_cols, int layers);
