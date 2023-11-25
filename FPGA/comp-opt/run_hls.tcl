@@ -17,11 +17,11 @@ set_part {xcu50-fsvh2104-2-e}
 create_clock -period 3.33
 
 # do a c simulation
-csim_design -O -argv "../../../../../../data/power_64x8 ../../../../../../data/temp_64x8"
+csim_design -O -ldflags {-z stack-size=1048576000} -argv "../../../../../../data/power_16x3 ../../../../../../data/temp_16x3"
 # synthesize the design
 csynth_design
 # do a co-simulation
-cosim_design -O -argv "../../../../../../data/power_64x8 ../../../../../../data/temp_64x8"
+cosim_design -O -ldflags {-z stack-size=1048576000} -argv "../../../../../../data/power_16x3 ../../../../../../data/temp_16x3"
 # close project and quit
 close_project
 # exit Vivado HLS
