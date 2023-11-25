@@ -211,17 +211,17 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
   {
     
 
-    for (k = 0; k < 3; k ++) {
+    // for (k = 0; k < 3; k ++) {
 
-        bool load_flag = (i >= 0) && (i < NJ);
-        bool compute_flag = (i >= 1) && (i < NJ + 1);
-        bool store_flag = (i >= 2) && (i < NJ + 2);
-
-
-        flow(result, temp, power, Cap, Rx, Ry, Rz, dt, amb_temp, center_buf, top_buf, bottom_buf, power_buf, result_buf);
+    //     bool load_flag = (i >= 0) && (i < NJ);
+    //     bool compute_flag = (i >= 1) && (i < NJ + 1);
+    //     bool store_flag = (i >= 2) && (i < NJ + 2);
 
 
-    }
+        flow(result, temp, power, Cap, Rx, Ry, Rz, dt, amb_temp, center_buf, top_buf, bottom_buf, power_buf, result_buf, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i);
+
+
+    // }
 
 
 
