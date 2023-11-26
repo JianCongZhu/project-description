@@ -7,8 +7,10 @@
 #include <string.h>
 #include "3dHLS.h"
 
+
 void buffer_load(float *dest, ap_uint<LARGE_BUS> *source)
 {
+
   memcpy_wide_bus_read_float(dest, source, 0 * sizeof(float), GRID_COLS * GRID_ROWS * sizeof(float));
 }
 
@@ -19,6 +21,7 @@ void compute(float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS
   int x, y, z;
   int c, w, e, n, s, b, t;
   int i, j, k, ii;
+
 
   float temp_w[PARA_FACTOR], temp_e[PARA_FACTOR], temp_s[PARA_FACTOR], temp_n[PARA_FACTOR], temp_center[PARA_FACTOR], power_center[PARA_FACTOR], temp_b[PARA_FACTOR], temp_t[PARA_FACTOR];
 
@@ -91,6 +94,7 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
   printf("start hotspot\n");
 
   int i, j, k;
+
   float cc, cn, cs, ce, cw, ct, cb;
   float stepDivCap = dt / Cap;
   ce = cw = stepDivCap / Rx;
@@ -99,7 +103,6 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
 
   cc = 1.0 - (2.0 * ce + 2.0 * cn + 3.0 * ct);
 
-  // float temp_buf[3 * GRID_ROWS * GRID_COLS];
   float top_buf0[GRID_ROWS * GRID_COLS];
     #pragma HLS array_partition variable=top_buf0 cyclic factor=16
   float center_buf0[GRID_ROWS * GRID_COLS];
