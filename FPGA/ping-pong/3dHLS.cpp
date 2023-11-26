@@ -195,7 +195,8 @@ void flowA(int load_flag, int compute_flag, int store_flag,
   buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * j / 16, result_buf1);
 }
 
-void flowB(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
+void flowB(int load_flag, int compute_flag, int store_flag,
+           ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            ap_uint<LARGE_BUS> temp[GRID_COLS * GRID_ROWS * LAYERS],
            ap_uint<LARGE_BUS> power[GRID_ROWS * GRID_COLS * LAYERS],
            float center_buf[GRID_ROWS * GRID_COLS],
