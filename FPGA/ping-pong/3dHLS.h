@@ -39,10 +39,11 @@ void flowA(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            float center_buf[GRID_ROWS * GRID_COLS],
            float top_buf[GRID_ROWS * GRID_COLS],
            float bottom_buf[GRID_ROWS * GRID_COLS],
-           float power_buf[GRID_ROWS * GRID_COLS],
-           float result_buf[GRID_ROWS * GRID_COLS],
-           float cc, float cn, float cs, float ce, float cw, float ct, float cb,
-           float Cap, float dt, float amb_temp, int i, int j);
+           float power_buf0[GRID_ROWS * GRID_COLS],
+           float power_buf1[GRID_ROWS * GRID_COLS],
+           float result_buf0[GRID_ROWS * GRID_COLS],
+           float result_buf1[GRID_ROWS * GRID_COLS],
+           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int i, int j);
 
 void flowB(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            ap_uint<LARGE_BUS> temp[GRID_COLS * GRID_ROWS * LAYERS],
@@ -50,10 +51,11 @@ void flowB(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            float center_buf[GRID_ROWS * GRID_COLS],
            float top_buf[GRID_ROWS * GRID_COLS],
            float bottom_buf[GRID_ROWS * GRID_COLS],
-           float power_buf[GRID_ROWS * GRID_COLS],
-           float result_buf[GRID_ROWS * GRID_COLS],
-           float cc, float cn, float cs, float ce, float cw, float ct, float cb, 
-           float Cap, float dt, float amb_temp, int i, int j);
+           float power_buf0[GRID_ROWS * GRID_COLS],
+           float power_buf1[GRID_ROWS * GRID_COLS],
+           float result_buf0[GRID_ROWS * GRID_COLS],
+           float result_buf1[GRID_ROWS * GRID_COLS],
+           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int i, int j);
 
 struct bench_args_t
 {
