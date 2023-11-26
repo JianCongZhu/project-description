@@ -41,9 +41,8 @@ void flowA(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            float bottom_buf[GRID_ROWS * GRID_COLS],
            float power_buf[GRID_ROWS * GRID_COLS],
            float result_buf[GRID_ROWS * GRID_COLS],
-           float cc, float cn, float cs, float ce, float cw, float ct, float cb, 
+           float cc, float cn, float cs, float ce, float cw, float ct, float cb,
            float Cap, float dt, float amb_temp, int i, int j);
-
 
 void flowB(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            ap_uint<LARGE_BUS> temp[GRID_COLS * GRID_ROWS * LAYERS],
