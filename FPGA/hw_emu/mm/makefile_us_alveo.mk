@@ -125,13 +125,14 @@ $(EMCONFIG_DIR)/emconfig.json:
 run: all
 ifeq ($(TARGET),$(filter $(TARGET),sw_emu hw_emu))
 	
-	@echo "Checking if $(EMCONFIG_DIR)/emconfig.json exists..."
-	@if [ ! -e $(EMCONFIG_DIR)/emconfig.json ]; then \
+	echo "Checking if $(EMCONFIG_DIR)/emconfig.json exists..."
+	if [ ! -e $(EMCONFIG_DIR)/emconfig.json ]; then \
     		echo "$(EMCONFIG_DIR)/emconfig.json not found."; \
     		exit 1; \
 	fi
+	echo $(EMCONFIG_DIR)/emconfig.json
 	
-	
+	cp -rf $(EMCONFIG_DIR)/emconfig.json .
 	cp -rf $(EMCONFIG_DIR)/emconfig.json .
 	XCL_EMULATION_MODE=$(TARGET) $(EXECUTABLE) $(CMD_ARGS) $(POWER_PATH) $(TEMP_PATH)
 else
