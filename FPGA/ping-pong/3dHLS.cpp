@@ -90,7 +90,7 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
 
   printf("start hotspot\n");
 
-  int i, j;
+  int i, j, k;
   float cc, cn, cs, ce, cw, ct, cb;
   float stepDivCap = dt / Cap;
   ce = cw = stepDivCap / Rx;
