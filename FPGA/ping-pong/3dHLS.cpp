@@ -9,14 +9,14 @@
 
 void buffer_load(int load_flag, float *dest, ap_uint<LARGE_BUS> *source)
 {
-  if load_flag
+  if (load_flag)
     memcpy_wide_bus_read_float(dest, source, 0 * sizeof(float), GRID_COLS * GRID_ROWS * sizeof(float));
 }
 
 void compute(int compute_flag, float result_buf[GRID_ROWS * GRID_COLS], float center_buf[GRID_ROWS * GRID_COLS], float top_buf[GRID_ROWS * GRID_COLS], float bottom_buf[GRID_ROWS * GRID_COLS],
              float power_buf[GRID_ROWS * GRID_COLS], float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int iteration)
 {
-  if compute_flag
+  if (compute_flag)
   {
     int x, y, z;
     int c, w, e, n, s, b, t;
@@ -49,7 +49,7 @@ void compute(int compute_flag, float result_buf[GRID_ROWS * GRID_COLS], float ce
 
 void buffer_store(int store_flag, ap_uint<LARGE_BUS> *dest, float *source)
 {
-  if store_flag
+  if (store_flag)
     memcpy_wide_bus_write_float(dest, source, 0 * sizeof(float), GRID_COLS * GRID_ROWS * sizeof(float));
 }
 
@@ -191,7 +191,7 @@ void flowA(int load_flag, int compute_flag, int store_flag,
   }
 
   buffer_load(load_flag, power_buf0, power + GRID_ROWS * GRID_COLS * j / 16);
-  compute(result_flag, result_buf0, center_buf, top_buf, bottom_buf, power_buf1, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i);
+  compute(compute_flag, result_buf0, center_buf, top_buf, bottom_buf, power_buf1, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i);
   buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * j / 16, result_buf1);
 }
 
@@ -212,7 +212,7 @@ void flowB(int load_flag, int compute_flag, int store_flag,
   if (j == 0) // bottom case
   {
     buffer_load(load_flag, center_buf, result + GRID_ROWS * GRID_COLS * j / 16);    // load for center layer
-    buffer_load(loag_flag, top_buf, result + GRID_ROWS * GRID_COLS * (j + 1 / 16)); // load for top layer
+    buffer_load(load_flag, top_buf, result + GRID_ROWS * GRID_COLS * (j + 1 / 16)); // load for top layer
     buffer_load(load_flag, bottom_buf, result + GRID_ROWS * GRID_COLS * (j) / 16);  // load for bottom layer
   }
   else if (j == LAYERS - 1) // top case
