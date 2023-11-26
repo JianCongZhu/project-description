@@ -101,22 +101,38 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
 
   // float temp_buf[3 * GRID_ROWS * GRID_COLS];
   float top_buf0[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=top_buf0 cyclic factor=16
   float center_buf0[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=center_buf0 cyclic factor=16
   float bottom_buf0[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=bottom_buf0 cyclic factor=16
   float power_buf0[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=power_buf0 cyclic factor=16
   float result_buf0[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=result_buf0 cyclic factor=16
 
   float top_buf1[GRID_ROWS * GRID_COLS];
+      #pragma HLS array_partition variable=top_buf1 cyclic factor=16
   float center_buf1[GRID_ROWS * GRID_COLS];
+      #pragma HLS array_partition variable=center_buf1 cyclic factor=16
   float bottom_buf1[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=bottom_buf1 cyclic factor=16
   float power_buf1[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=power_buf1 cyclic factor=16
   float result_buf1[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=result_buf1 cyclic factor=16
 
   float top_buf2[GRID_ROWS * GRID_COLS];
+      #pragma HLS array_partition variable=top_buf2 cyclic factor=16
   float center_buf2[GRID_ROWS * GRID_COLS];
+      #pragma HLS array_partition variable=center_buf2 cyclic factor=16
   float bottom_buf2[GRID_ROWS * GRID_COLS];
+      #pragma HLS array_partition variable=bottom_buf2 cyclic factor=16
   float power_buf2[GRID_ROWS * GRID_COLS];
+    #pragma HLS array_partition variable=power_buf2 cyclic factor=16
   float result_buf2[GRID_ROWS * GRID_COLS];
+      #pragma HLS array_partition variable=result_buf2 cyclic factor=16
+
 
   for (i = 0; i < ITERATIONS / 2; i++)
   {
@@ -172,7 +188,7 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
       }
     }
   }
-  
+
   return;
 }
 
