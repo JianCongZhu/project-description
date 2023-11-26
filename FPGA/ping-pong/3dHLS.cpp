@@ -98,11 +98,11 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
   cc = 1.0 - (2.0 * ce + 2.0 * cn + 3.0 * ct);
 
   // float temp_buf[3 * GRID_ROWS * GRID_COLS];
-  float top_buf0[GRID_ROWS * GRID_COLS];
-  float center_buf0[GRID_ROWS * GRID_COLS];
-  float bottom_buf0[GRID_ROWS * GRID_COLS];
-  float power_buf0[GRID_ROWS * GRID_COLS];
-  float result_buf0[GRID_ROWS * GRID_COLS];
+  float top_buf[GRID_ROWS * GRID_COLS];
+  float center_buf[GRID_ROWS * GRID_COLS];
+  float bottom_buf[GRID_ROWS * GRID_COLS];
+  float power_buf[GRID_ROWS * GRID_COLS];
+  float result_buf[GRID_ROWS * GRID_COLS];
 
   float top_buf1[GRID_ROWS * GRID_COLS];
   float center_buf1[GRID_ROWS * GRID_COLS];
@@ -121,7 +121,7 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
   {
 
     for (j = 0; j < LAYERS; j++ ) {
-      flowB (result, temp, power, center_buf, top_buf, bottom_buf, power_buf, result_buf,
+      flowA (result, temp, power, center_buf, top_buf, bottom_buf, power_buf, result_buf,
              cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp, i, j);
     }
 
@@ -143,7 +143,7 @@ void flowA( ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            float bottom_buf[GRID_ROWS * GRID_COLS], 
            float power_buf[GRID_ROWS * GRID_COLS], 
            float result_buf[GRID_ROWS * GRID_COLS], 
-           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int iteration, int layer) {
+           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int i, int j) {
         
         if (j == 0) // bottom case
         {
@@ -177,7 +177,7 @@ void flowB( ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS],
            float bottom_buf[GRID_ROWS * GRID_COLS], 
            float power_buf[GRID_ROWS * GRID_COLS], 
            float result_buf[GRID_ROWS * GRID_COLS], 
-           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int iteration, int layer) {
+           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int i, int j) {
         
         if (j == 0) // bottom case
         {

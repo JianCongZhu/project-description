@@ -33,6 +33,44 @@ float accuracy(float *arr1, float *arr2, int len);
 void computeTempOMP(float *pIn, float *tIn, float *tOut, int nx, int ny, int nz, float Cap, float Rx, float Ry, float Rz, float dt, int numiter);
 void usage(int argc, char **argv);
 
+void flowA( ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], 
+
+           ap_uint<LARGE_BUS> temp[GRID_COLS * GRID_ROWS * LAYERS], 
+
+           ap_uint<LARGE_BUS> power[GRID_ROWS * GRID_COLS * LAYERS], 
+
+           float center_buf[GRID_ROWS * GRID_COLS], 
+
+           float top_buf[GRID_ROWS * GRID_COLS], 
+
+           float bottom_buf[GRID_ROWS * GRID_COLS], 
+
+           float power_buf[GRID_ROWS * GRID_COLS], 
+
+           float result_buf[GRID_ROWS * GRID_COLS], 
+
+           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int i, int j);
+
+
+void flowB( ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], 
+
+           ap_uint<LARGE_BUS> temp[GRID_COLS * GRID_ROWS * LAYERS], 
+
+           ap_uint<LARGE_BUS> power[GRID_ROWS * GRID_COLS * LAYERS], 
+
+           float center_buf[GRID_ROWS * GRID_COLS], 
+
+           float top_buf[GRID_ROWS * GRID_COLS], 
+
+           float bottom_buf[GRID_ROWS * GRID_COLS], 
+
+           float power_buf[GRID_ROWS * GRID_COLS], 
+
+           float result_buf[GRID_ROWS * GRID_COLS], 
+
+           float cc, float cn, float cs, float ce, float cw, float ct, float cb, float Cap, float dt, float amb_temp, int i, int j);
+
+
 struct bench_args_t {
     float temp[GRID_ROWS * GRID_COLS];
     float power[GRID_ROWS * GRID_COLS];
