@@ -91,7 +91,7 @@ void hotspot_opt1(float *p, float *tIn, float *tOut,
     cudaDeviceSynchronize();
     long long stop = get_time();
     float time = (float)((stop - start) / (1000.0 * 1000.0));
-    printf("Time: %.3f (s)\n", time);
+    printf("GPU Time: %.3f (s)\n", time);
     cudaMemcpy(tOut, tOut_d, s, cudaMemcpyDeviceToHost);
     cudaFree(p_d);
     cudaFree(tIn_d);
