@@ -338,6 +338,12 @@ int main(int argc, char** argv)
           printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
           return -1;
         }
+
+
+	printf("Results at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+
+
+
         
         
         //{
