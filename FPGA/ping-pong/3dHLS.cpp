@@ -48,6 +48,69 @@ void compute(int compute_flag, float result_buf[GRID_ROWS * GRID_COLS], float ce
       
         
     }
+    
+
+/*
+    int x, y, z;
+    int c, w, e, n, s, b, t;
+    int i, j, k, ii;
+
+    float temp_w[PARA_FACTOR], temp_e[PARA_FACTOR], temp_s[PARA_FACTOR], temp_n[PARA_FACTOR], temp_center[PARA_FACTOR], power_center[PARA_FACTOR], temp_b[PARA_FACTOR], temp_t[PARA_FACTOR];
+
+    float temp_rf1[PARA_FACTOR][GRID_COLS * 2 / PARA_FACTOR + 1];
+    float temp_rf2[PARA_FACTOR][GRID_COLS * 2 / PARA_FACTOR + 1];
+    float temp_rf3[PARA_FACTOR][GRID_COLS * 2 / PARA_FACTOR + 1];
+
+#pragma HLS array_partition variable = temp_rf1 complete dim = 0
+#pragma HLS array_partition variable = temp_rf2 complete dim = 0
+#pragma HLS array_partition variable = temp_rf3 complete dim = 0
+
+    for (i = 0; i < GRID_COLS * 2 / PARA_FACTOR + 1; i++)
+    {
+#pragma HLS pipeline II = 1
+      for (j = 0; j < PARA_FACTOR; j++)
+      {
+#pragma HLS unroll
+        temp_rf1[j][i] = center_buf[i * PARA_FACTOR + j];
+        temp_rf2[j][i] = top_buf[i * PARA_FACTOR + j];
+        temp_rf3[j][i] = bottom_buf[i * PARA_FACTOR + j];
+      }
+    }
+
+    for (i = 0; i < GRID_COLS / PARA_FACTOR * GRID_ROWS; i++)
+    {
+#pragma HLS pipeline II = 1
+      for (k = 0; k < PARA_FACTOR; k++)
+      {
+#pragma HLS unroll
+        // c = x + y * GRID_ROWS;
+        temp_center[k] = temp_rf1[k][GRID_COLS / PARA_FACTOR];
+        temp_t[k] = temp_rf2[k][GRID_COLS / PARA_FACTOR];
+        temp_b[k] = temp_rf3[k][GRID_COLS / PARA_FACTOR];
+
+        temp_w[k] = ((i % (GRID_COLS / PARA_FACTOR)) == 0 && k == 0) ? temp_center[k] : temp_rf1[(k - 1 + PARA_FACTOR) % PARA_FACTOR][GRID_COLS / PARA_FACTOR - (k == 0)];
+        temp_e[k] = ((i % (GRID_COLS / PARA_FACTOR)) == (GRID_COLS / PARA_FACTOR - 1) && k == PARA_FACTOR - 1) ? temp_center[k] : temp_rf1[(k + 1 + PARA_FACTOR) % PARA_FACTOR][GRID_COLS / PARA_FACTOR + (k == (PARA_FACTOR - 1))];
+        temp_n[k] = (i < GRID_COLS / PARA_FACTOR) ? temp_center[k] : temp_rf1[k][0];
+        temp_s[k] = (i >= GRID_COLS / PARA_FACTOR * (GRID_ROWS - 1)) ? temp_center[k] : temp_rf1[k][GRID_COLS / PARA_FACTOR * 2];
+        power_center[k] = power_buf[i * PARA_FACTOR + k];
+        result_buf[i * PARA_FACTOR + k] = temp_center[k] * cc + temp_n[k] * cn + temp_s[k] * cs + temp_e[k] * ce + temp_w[k] * cw + temp_t[k] * ct + temp_b[k] * cb + (dt / Cap) * power_center[k] + ct * amb_temp;
+      }
+    }
+
+    for (k = 0; k < PARA_FACTOR; k++)
+    {
+#pragma hls unroll
+      for (j = 0; j < GRID_COLS * 2 / PARA_FACTOR; j++)
+      {
+#pragma hls unroll
+        temp_rf1[k][j] = temp_rf1[k][j + 1];
+        temp_rf2[k][j] = temp_rf2[k][j + 1];
+        temp_rf3[k][j] = temp_rf3[k][j + 1];
+      }
+      temp_rf1[k][GRID_COLS * 2 / PARA_FACTOR] = center_buf[GRID_COLS * 2 + (i + 1) * PARA_FACTOR + k];
+      temp_rf2[k][GRID_COLS * 2 / PARA_FACTOR] = top_buf[GRID_COLS * 2 + (i + 1) * PARA_FACTOR + k];
+      temp_rf3[k][GRID_COLS * 2 / PARA_FACTOR] = bottom_buf[GRID_COLS * 2 + (i + 1) * PARA_FACTOR + k];
+    }*/
   }
 }
 
