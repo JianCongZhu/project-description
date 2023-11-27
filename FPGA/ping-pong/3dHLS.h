@@ -4,7 +4,7 @@
 #define GRID_ROWS 64
 #define GRID_COLS 64
 #define LAYERS 8
-#define ITERATIONS 1000
+#define ITERATIONS 4000
 #define PARA_FACTOR 16
 
 #define STR_SIZE (256)
