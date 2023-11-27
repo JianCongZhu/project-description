@@ -44,7 +44,7 @@ endif
 
 ############################## Setting up Project Variables ##############################
 #################Make Your Changes Here####################
-MY_KERNEL_NAME = kernel_gemm_hw
+MY_KERNEL_NAME = hotspot_HW
 #################Make Your Changes Here####################
 
 TARGET := hw
@@ -80,7 +80,8 @@ VPP_FLAGS_$(MY_KERNEL_NAME) +=
 
 EXECUTABLE = ./$(MY_KERNEL_NAME)
 EMCONFIG_DIR = $(TEMP_DIR)
-
+POWER_PATH = ../../../data/power_64x8
+TEMP_PATH = ../../../data/temp_64x8
 ############################## Setting Targets ##############################
 .PHONY: all clean cleanall docs emconfig
 all: check-platform check-device check-vitis $(EXECUTABLE) $(BUILD_DIR)/$(MY_KERNEL_NAME).xclbin emconfig
@@ -123,8 +124,16 @@ $(EMCONFIG_DIR)/emconfig.json:
 ############################## Setting Essential Checks and Running Rules ##############################
 run: all
 ifeq ($(TARGET),$(filter $(TARGET),sw_emu hw_emu))
+	
+	echo "Checking if $(EMCONFIG_DIR)/emconfig.json exists..."
+	if [ ! -e $(EMCONFIG_DIR)/emconfig.json ]; then \
+    		echo "$(EMCONFIG_DIR)/emconfig.json not found."; \
+    		exit 1; \
+	fi
+	echo $(EMCONFIG_DIR)/emconfig.json
+	
 	cp -rf $(EMCONFIG_DIR)/emconfig.json .
-	XCL_EMULATION_MODE=$(TARGET) $(EXECUTABLE) $(CMD_ARGS)
+	XCL_EMULATION_MODE=$(TARGET) $(EXECUTABLE) $(CMD_ARGS) $(POWER_PATH) $(TEMP_PATH)
 else
 	$(EXECUTABLE) $(CMD_ARGS)
 endif
