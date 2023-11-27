@@ -1,0 +1,419 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'selectLayer'" level="0">
+<item name = "Date">Sun Nov 26 22:31:58 2023
+</item>
+<item name = "Version">2020.2.2 (Build 3118627 on Tue Feb  9 05:13:49 MST 2021)</item>
+<item name = "Project">hotspot.prj</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">3.33 ns, 2.067 ns, 0.90 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">8, 785, 26.640 ns, 2.614 us, 8, 785, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_buffer_load_fu_174">buffer_load, 1, 260, 3.330 ns, 0.866 us, 1, 260, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 107, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, 666, 179, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 981, -</column>
+<column name="Register">-, -, 35, -, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, 0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="grp_buffer_load_fu_174">buffer_load, 0, 0, 666, 179, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln248_fu_275_p2">+, 0, 0, 23, 16, 13</column>
+<column name="add_ln249_fu_304_p2">+, 0, 0, 24, 17, 14</column>
+<column name="sub_ln249_1_fu_338_p2">-, 0, 0, 20, 1, 13</column>
+<column name="sub_ln249_fu_318_p2">-, 0, 0, 23, 13, 16</column>
+<column name="ap_predicate_op32_call_state6">and, 0, 0, 2, 1, 1</column>
+<column name="ap_block_state6_on_subcall_done">or, 0, 0, 2, 1, 1</column>
+<column name="select_ln249_fu_354_p3">select, 0, 0, 13, 1, 13</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">65, 15, 1, 15</column>
+<column name="bottom_buf_0_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_0_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_10_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_10_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_11_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_11_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_12_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_12_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_13_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_13_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_14_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_14_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_15_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_15_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_1_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_1_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_2_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_2_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_3_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_3_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_4_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_4_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_5_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_5_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_6_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_6_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_7_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_7_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_8_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_8_we0">9, 2, 1, 2</column>
+<column name="bottom_buf_9_ce0">9, 2, 1, 2</column>
+<column name="bottom_buf_9_we0">9, 2, 1, 2</column>
+<column name="center_buf_0_ce0">9, 2, 1, 2</column>
+<column name="center_buf_0_we0">9, 2, 1, 2</column>
+<column name="center_buf_10_ce0">9, 2, 1, 2</column>
+<column name="center_buf_10_we0">9, 2, 1, 2</column>
+<column name="center_buf_11_ce0">9, 2, 1, 2</column>
+<column name="center_buf_11_we0">9, 2, 1, 2</column>
+<column name="center_buf_12_ce0">9, 2, 1, 2</column>
+<column name="center_buf_12_we0">9, 2, 1, 2</column>
+<column name="center_buf_13_ce0">9, 2, 1, 2</column>
+<column name="center_buf_13_we0">9, 2, 1, 2</column>
+<column name="center_buf_14_ce0">9, 2, 1, 2</column>
+<column name="center_buf_14_we0">9, 2, 1, 2</column>
+<column name="center_buf_15_ce0">9, 2, 1, 2</column>
+<column name="center_buf_15_we0">9, 2, 1, 2</column>
+<column name="center_buf_1_ce0">9, 2, 1, 2</column>
+<column name="center_buf_1_we0">9, 2, 1, 2</column>
+<column name="center_buf_2_ce0">9, 2, 1, 2</column>
+<column name="center_buf_2_we0">9, 2, 1, 2</column>
+<column name="center_buf_3_ce0">9, 2, 1, 2</column>
+<column name="center_buf_3_we0">9, 2, 1, 2</column>
+<column name="center_buf_4_ce0">9, 2, 1, 2</column>
+<column name="center_buf_4_we0">9, 2, 1, 2</column>
+<column name="center_buf_5_ce0">9, 2, 1, 2</column>
+<column name="center_buf_5_we0">9, 2, 1, 2</column>
+<column name="center_buf_6_ce0">9, 2, 1, 2</column>
+<column name="center_buf_6_we0">9, 2, 1, 2</column>
+<column name="center_buf_7_ce0">9, 2, 1, 2</column>
+<column name="center_buf_7_we0">9, 2, 1, 2</column>
+<column name="center_buf_8_ce0">9, 2, 1, 2</column>
+<column name="center_buf_8_we0">9, 2, 1, 2</column>
+<column name="center_buf_9_ce0">9, 2, 1, 2</column>
+<column name="center_buf_9_we0">9, 2, 1, 2</column>
+<column name="grp_buffer_load_fu_174_source">43, 8, 21, 168</column>
+<column name="temp_ce0">9, 2, 1, 2</column>
+<column name="top_buf_0_ce0">9, 2, 1, 2</column>
+<column name="top_buf_0_we0">9, 2, 1, 2</column>
+<column name="top_buf_10_ce0">9, 2, 1, 2</column>
+<column name="top_buf_10_we0">9, 2, 1, 2</column>
+<column name="top_buf_11_ce0">9, 2, 1, 2</column>
+<column name="top_buf_11_we0">9, 2, 1, 2</column>
+<column name="top_buf_12_ce0">9, 2, 1, 2</column>
+<column name="top_buf_12_we0">9, 2, 1, 2</column>
+<column name="top_buf_13_ce0">9, 2, 1, 2</column>
+<column name="top_buf_13_we0">9, 2, 1, 2</column>
+<column name="top_buf_14_ce0">9, 2, 1, 2</column>
+<column name="top_buf_14_we0">9, 2, 1, 2</column>
+<column name="top_buf_15_ce0">9, 2, 1, 2</column>
+<column name="top_buf_15_we0">9, 2, 1, 2</column>
+<column name="top_buf_1_ce0">9, 2, 1, 2</column>
+<column name="top_buf_1_we0">9, 2, 1, 2</column>
+<column name="top_buf_2_ce0">9, 2, 1, 2</column>
+<column name="top_buf_2_we0">9, 2, 1, 2</column>
+<column name="top_buf_3_ce0">9, 2, 1, 2</column>
+<column name="top_buf_3_we0">9, 2, 1, 2</column>
+<column name="top_buf_4_ce0">9, 2, 1, 2</column>
+<column name="top_buf_4_we0">9, 2, 1, 2</column>
+<column name="top_buf_5_ce0">9, 2, 1, 2</column>
+<column name="top_buf_5_we0">9, 2, 1, 2</column>
+<column name="top_buf_6_ce0">9, 2, 1, 2</column>
+<column name="top_buf_6_we0">9, 2, 1, 2</column>
+<column name="top_buf_7_ce0">9, 2, 1, 2</column>
+<column name="top_buf_7_we0">9, 2, 1, 2</column>
+<column name="top_buf_8_ce0">9, 2, 1, 2</column>
+<column name="top_buf_8_we0">9, 2, 1, 2</column>
+<column name="top_buf_9_ce0">9, 2, 1, 2</column>
+<column name="top_buf_9_we0">9, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">14, 0, 14, 0</column>
+<column name="grp_buffer_load_fu_174_ap_start_reg">1, 0, 1, 0</column>
+<column name="select_ln249_reg_394">5, 0, 13, 8</column>
+<column name="sext_ln249_1_reg_399">7, 0, 21, 14</column>
+<column name="zext_ln247_1_reg_384">4, 0, 21, 17</column>
+<column name="zext_ln248_reg_389">4, 0, 21, 17</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, selectLayer, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, selectLayer, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, selectLayer, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, selectLayer, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, selectLayer, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, selectLayer, return value</column>
+<column name="temp_address0">out, 15, ap_memory, temp, array</column>
+<column name="temp_ce0">out, 1, ap_memory, temp, array</column>
+<column name="temp_q0">in, 512, ap_memory, temp, array</column>
+<column name="load_flag">in, 1, ap_none, load_flag, scalar</column>
+<column name="center_buf_0_address0">out, 8, ap_memory, center_buf_0, array</column>
+<column name="center_buf_0_ce0">out, 1, ap_memory, center_buf_0, array</column>
+<column name="center_buf_0_we0">out, 1, ap_memory, center_buf_0, array</column>
+<column name="center_buf_0_d0">out, 32, ap_memory, center_buf_0, array</column>
+<column name="center_buf_1_address0">out, 8, ap_memory, center_buf_1, array</column>
+<column name="center_buf_1_ce0">out, 1, ap_memory, center_buf_1, array</column>
+<column name="center_buf_1_we0">out, 1, ap_memory, center_buf_1, array</column>
+<column name="center_buf_1_d0">out, 32, ap_memory, center_buf_1, array</column>
+<column name="center_buf_2_address0">out, 8, ap_memory, center_buf_2, array</column>
+<column name="center_buf_2_ce0">out, 1, ap_memory, center_buf_2, array</column>
+<column name="center_buf_2_we0">out, 1, ap_memory, center_buf_2, array</column>
+<column name="center_buf_2_d0">out, 32, ap_memory, center_buf_2, array</column>
+<column name="center_buf_3_address0">out, 8, ap_memory, center_buf_3, array</column>
+<column name="center_buf_3_ce0">out, 1, ap_memory, center_buf_3, array</column>
+<column name="center_buf_3_we0">out, 1, ap_memory, center_buf_3, array</column>
+<column name="center_buf_3_d0">out, 32, ap_memory, center_buf_3, array</column>
+<column name="center_buf_4_address0">out, 8, ap_memory, center_buf_4, array</column>
+<column name="center_buf_4_ce0">out, 1, ap_memory, center_buf_4, array</column>
+<column name="center_buf_4_we0">out, 1, ap_memory, center_buf_4, array</column>
+<column name="center_buf_4_d0">out, 32, ap_memory, center_buf_4, array</column>
+<column name="center_buf_5_address0">out, 8, ap_memory, center_buf_5, array</column>
+<column name="center_buf_5_ce0">out, 1, ap_memory, center_buf_5, array</column>
+<column name="center_buf_5_we0">out, 1, ap_memory, center_buf_5, array</column>
+<column name="center_buf_5_d0">out, 32, ap_memory, center_buf_5, array</column>
+<column name="center_buf_6_address0">out, 8, ap_memory, center_buf_6, array</column>
+<column name="center_buf_6_ce0">out, 1, ap_memory, center_buf_6, array</column>
+<column name="center_buf_6_we0">out, 1, ap_memory, center_buf_6, array</column>
+<column name="center_buf_6_d0">out, 32, ap_memory, center_buf_6, array</column>
+<column name="center_buf_7_address0">out, 8, ap_memory, center_buf_7, array</column>
+<column name="center_buf_7_ce0">out, 1, ap_memory, center_buf_7, array</column>
+<column name="center_buf_7_we0">out, 1, ap_memory, center_buf_7, array</column>
+<column name="center_buf_7_d0">out, 32, ap_memory, center_buf_7, array</column>
+<column name="center_buf_8_address0">out, 8, ap_memory, center_buf_8, array</column>
+<column name="center_buf_8_ce0">out, 1, ap_memory, center_buf_8, array</column>
+<column name="center_buf_8_we0">out, 1, ap_memory, center_buf_8, array</column>
+<column name="center_buf_8_d0">out, 32, ap_memory, center_buf_8, array</column>
+<column name="center_buf_9_address0">out, 8, ap_memory, center_buf_9, array</column>
+<column name="center_buf_9_ce0">out, 1, ap_memory, center_buf_9, array</column>
+<column name="center_buf_9_we0">out, 1, ap_memory, center_buf_9, array</column>
+<column name="center_buf_9_d0">out, 32, ap_memory, center_buf_9, array</column>
+<column name="center_buf_10_address0">out, 8, ap_memory, center_buf_10, array</column>
+<column name="center_buf_10_ce0">out, 1, ap_memory, center_buf_10, array</column>
+<column name="center_buf_10_we0">out, 1, ap_memory, center_buf_10, array</column>
+<column name="center_buf_10_d0">out, 32, ap_memory, center_buf_10, array</column>
+<column name="center_buf_11_address0">out, 8, ap_memory, center_buf_11, array</column>
+<column name="center_buf_11_ce0">out, 1, ap_memory, center_buf_11, array</column>
+<column name="center_buf_11_we0">out, 1, ap_memory, center_buf_11, array</column>
+<column name="center_buf_11_d0">out, 32, ap_memory, center_buf_11, array</column>
+<column name="center_buf_12_address0">out, 8, ap_memory, center_buf_12, array</column>
+<column name="center_buf_12_ce0">out, 1, ap_memory, center_buf_12, array</column>
+<column name="center_buf_12_we0">out, 1, ap_memory, center_buf_12, array</column>
+<column name="center_buf_12_d0">out, 32, ap_memory, center_buf_12, array</column>
+<column name="center_buf_13_address0">out, 8, ap_memory, center_buf_13, array</column>
+<column name="center_buf_13_ce0">out, 1, ap_memory, center_buf_13, array</column>
+<column name="center_buf_13_we0">out, 1, ap_memory, center_buf_13, array</column>
+<column name="center_buf_13_d0">out, 32, ap_memory, center_buf_13, array</column>
+<column name="center_buf_14_address0">out, 8, ap_memory, center_buf_14, array</column>
+<column name="center_buf_14_ce0">out, 1, ap_memory, center_buf_14, array</column>
+<column name="center_buf_14_we0">out, 1, ap_memory, center_buf_14, array</column>
+<column name="center_buf_14_d0">out, 32, ap_memory, center_buf_14, array</column>
+<column name="center_buf_15_address0">out, 8, ap_memory, center_buf_15, array</column>
+<column name="center_buf_15_ce0">out, 1, ap_memory, center_buf_15, array</column>
+<column name="center_buf_15_we0">out, 1, ap_memory, center_buf_15, array</column>
+<column name="center_buf_15_d0">out, 32, ap_memory, center_buf_15, array</column>
+<column name="top_buf_0_address0">out, 8, ap_memory, top_buf_0, array</column>
+<column name="top_buf_0_ce0">out, 1, ap_memory, top_buf_0, array</column>
+<column name="top_buf_0_we0">out, 1, ap_memory, top_buf_0, array</column>
+<column name="top_buf_0_d0">out, 32, ap_memory, top_buf_0, array</column>
+<column name="top_buf_1_address0">out, 8, ap_memory, top_buf_1, array</column>
+<column name="top_buf_1_ce0">out, 1, ap_memory, top_buf_1, array</column>
+<column name="top_buf_1_we0">out, 1, ap_memory, top_buf_1, array</column>
+<column name="top_buf_1_d0">out, 32, ap_memory, top_buf_1, array</column>
+<column name="top_buf_2_address0">out, 8, ap_memory, top_buf_2, array</column>
+<column name="top_buf_2_ce0">out, 1, ap_memory, top_buf_2, array</column>
+<column name="top_buf_2_we0">out, 1, ap_memory, top_buf_2, array</column>
+<column name="top_buf_2_d0">out, 32, ap_memory, top_buf_2, array</column>
+<column name="top_buf_3_address0">out, 8, ap_memory, top_buf_3, array</column>
+<column name="top_buf_3_ce0">out, 1, ap_memory, top_buf_3, array</column>
+<column name="top_buf_3_we0">out, 1, ap_memory, top_buf_3, array</column>
+<column name="top_buf_3_d0">out, 32, ap_memory, top_buf_3, array</column>
+<column name="top_buf_4_address0">out, 8, ap_memory, top_buf_4, array</column>
+<column name="top_buf_4_ce0">out, 1, ap_memory, top_buf_4, array</column>
+<column name="top_buf_4_we0">out, 1, ap_memory, top_buf_4, array</column>
+<column name="top_buf_4_d0">out, 32, ap_memory, top_buf_4, array</column>
+<column name="top_buf_5_address0">out, 8, ap_memory, top_buf_5, array</column>
+<column name="top_buf_5_ce0">out, 1, ap_memory, top_buf_5, array</column>
+<column name="top_buf_5_we0">out, 1, ap_memory, top_buf_5, array</column>
+<column name="top_buf_5_d0">out, 32, ap_memory, top_buf_5, array</column>
+<column name="top_buf_6_address0">out, 8, ap_memory, top_buf_6, array</column>
+<column name="top_buf_6_ce0">out, 1, ap_memory, top_buf_6, array</column>
+<column name="top_buf_6_we0">out, 1, ap_memory, top_buf_6, array</column>
+<column name="top_buf_6_d0">out, 32, ap_memory, top_buf_6, array</column>
+<column name="top_buf_7_address0">out, 8, ap_memory, top_buf_7, array</column>
+<column name="top_buf_7_ce0">out, 1, ap_memory, top_buf_7, array</column>
+<column name="top_buf_7_we0">out, 1, ap_memory, top_buf_7, array</column>
+<column name="top_buf_7_d0">out, 32, ap_memory, top_buf_7, array</column>
+<column name="top_buf_8_address0">out, 8, ap_memory, top_buf_8, array</column>
+<column name="top_buf_8_ce0">out, 1, ap_memory, top_buf_8, array</column>
+<column name="top_buf_8_we0">out, 1, ap_memory, top_buf_8, array</column>
+<column name="top_buf_8_d0">out, 32, ap_memory, top_buf_8, array</column>
+<column name="top_buf_9_address0">out, 8, ap_memory, top_buf_9, array</column>
+<column name="top_buf_9_ce0">out, 1, ap_memory, top_buf_9, array</column>
+<column name="top_buf_9_we0">out, 1, ap_memory, top_buf_9, array</column>
+<column name="top_buf_9_d0">out, 32, ap_memory, top_buf_9, array</column>
+<column name="top_buf_10_address0">out, 8, ap_memory, top_buf_10, array</column>
+<column name="top_buf_10_ce0">out, 1, ap_memory, top_buf_10, array</column>
+<column name="top_buf_10_we0">out, 1, ap_memory, top_buf_10, array</column>
+<column name="top_buf_10_d0">out, 32, ap_memory, top_buf_10, array</column>
+<column name="top_buf_11_address0">out, 8, ap_memory, top_buf_11, array</column>
+<column name="top_buf_11_ce0">out, 1, ap_memory, top_buf_11, array</column>
+<column name="top_buf_11_we0">out, 1, ap_memory, top_buf_11, array</column>
+<column name="top_buf_11_d0">out, 32, ap_memory, top_buf_11, array</column>
+<column name="top_buf_12_address0">out, 8, ap_memory, top_buf_12, array</column>
+<column name="top_buf_12_ce0">out, 1, ap_memory, top_buf_12, array</column>
+<column name="top_buf_12_we0">out, 1, ap_memory, top_buf_12, array</column>
+<column name="top_buf_12_d0">out, 32, ap_memory, top_buf_12, array</column>
+<column name="top_buf_13_address0">out, 8, ap_memory, top_buf_13, array</column>
+<column name="top_buf_13_ce0">out, 1, ap_memory, top_buf_13, array</column>
+<column name="top_buf_13_we0">out, 1, ap_memory, top_buf_13, array</column>
+<column name="top_buf_13_d0">out, 32, ap_memory, top_buf_13, array</column>
+<column name="top_buf_14_address0">out, 8, ap_memory, top_buf_14, array</column>
+<column name="top_buf_14_ce0">out, 1, ap_memory, top_buf_14, array</column>
+<column name="top_buf_14_we0">out, 1, ap_memory, top_buf_14, array</column>
+<column name="top_buf_14_d0">out, 32, ap_memory, top_buf_14, array</column>
+<column name="top_buf_15_address0">out, 8, ap_memory, top_buf_15, array</column>
+<column name="top_buf_15_ce0">out, 1, ap_memory, top_buf_15, array</column>
+<column name="top_buf_15_we0">out, 1, ap_memory, top_buf_15, array</column>
+<column name="top_buf_15_d0">out, 32, ap_memory, top_buf_15, array</column>
+<column name="bottom_buf_0_address0">out, 8, ap_memory, bottom_buf_0, array</column>
+<column name="bottom_buf_0_ce0">out, 1, ap_memory, bottom_buf_0, array</column>
+<column name="bottom_buf_0_we0">out, 1, ap_memory, bottom_buf_0, array</column>
+<column name="bottom_buf_0_d0">out, 32, ap_memory, bottom_buf_0, array</column>
+<column name="bottom_buf_1_address0">out, 8, ap_memory, bottom_buf_1, array</column>
+<column name="bottom_buf_1_ce0">out, 1, ap_memory, bottom_buf_1, array</column>
+<column name="bottom_buf_1_we0">out, 1, ap_memory, bottom_buf_1, array</column>
+<column name="bottom_buf_1_d0">out, 32, ap_memory, bottom_buf_1, array</column>
+<column name="bottom_buf_2_address0">out, 8, ap_memory, bottom_buf_2, array</column>
+<column name="bottom_buf_2_ce0">out, 1, ap_memory, bottom_buf_2, array</column>
+<column name="bottom_buf_2_we0">out, 1, ap_memory, bottom_buf_2, array</column>
+<column name="bottom_buf_2_d0">out, 32, ap_memory, bottom_buf_2, array</column>
+<column name="bottom_buf_3_address0">out, 8, ap_memory, bottom_buf_3, array</column>
+<column name="bottom_buf_3_ce0">out, 1, ap_memory, bottom_buf_3, array</column>
+<column name="bottom_buf_3_we0">out, 1, ap_memory, bottom_buf_3, array</column>
+<column name="bottom_buf_3_d0">out, 32, ap_memory, bottom_buf_3, array</column>
+<column name="bottom_buf_4_address0">out, 8, ap_memory, bottom_buf_4, array</column>
+<column name="bottom_buf_4_ce0">out, 1, ap_memory, bottom_buf_4, array</column>
+<column name="bottom_buf_4_we0">out, 1, ap_memory, bottom_buf_4, array</column>
+<column name="bottom_buf_4_d0">out, 32, ap_memory, bottom_buf_4, array</column>
+<column name="bottom_buf_5_address0">out, 8, ap_memory, bottom_buf_5, array</column>
+<column name="bottom_buf_5_ce0">out, 1, ap_memory, bottom_buf_5, array</column>
+<column name="bottom_buf_5_we0">out, 1, ap_memory, bottom_buf_5, array</column>
+<column name="bottom_buf_5_d0">out, 32, ap_memory, bottom_buf_5, array</column>
+<column name="bottom_buf_6_address0">out, 8, ap_memory, bottom_buf_6, array</column>
+<column name="bottom_buf_6_ce0">out, 1, ap_memory, bottom_buf_6, array</column>
+<column name="bottom_buf_6_we0">out, 1, ap_memory, bottom_buf_6, array</column>
+<column name="bottom_buf_6_d0">out, 32, ap_memory, bottom_buf_6, array</column>
+<column name="bottom_buf_7_address0">out, 8, ap_memory, bottom_buf_7, array</column>
+<column name="bottom_buf_7_ce0">out, 1, ap_memory, bottom_buf_7, array</column>
+<column name="bottom_buf_7_we0">out, 1, ap_memory, bottom_buf_7, array</column>
+<column name="bottom_buf_7_d0">out, 32, ap_memory, bottom_buf_7, array</column>
+<column name="bottom_buf_8_address0">out, 8, ap_memory, bottom_buf_8, array</column>
+<column name="bottom_buf_8_ce0">out, 1, ap_memory, bottom_buf_8, array</column>
+<column name="bottom_buf_8_we0">out, 1, ap_memory, bottom_buf_8, array</column>
+<column name="bottom_buf_8_d0">out, 32, ap_memory, bottom_buf_8, array</column>
+<column name="bottom_buf_9_address0">out, 8, ap_memory, bottom_buf_9, array</column>
+<column name="bottom_buf_9_ce0">out, 1, ap_memory, bottom_buf_9, array</column>
+<column name="bottom_buf_9_we0">out, 1, ap_memory, bottom_buf_9, array</column>
+<column name="bottom_buf_9_d0">out, 32, ap_memory, bottom_buf_9, array</column>
+<column name="bottom_buf_10_address0">out, 8, ap_memory, bottom_buf_10, array</column>
+<column name="bottom_buf_10_ce0">out, 1, ap_memory, bottom_buf_10, array</column>
+<column name="bottom_buf_10_we0">out, 1, ap_memory, bottom_buf_10, array</column>
+<column name="bottom_buf_10_d0">out, 32, ap_memory, bottom_buf_10, array</column>
+<column name="bottom_buf_11_address0">out, 8, ap_memory, bottom_buf_11, array</column>
+<column name="bottom_buf_11_ce0">out, 1, ap_memory, bottom_buf_11, array</column>
+<column name="bottom_buf_11_we0">out, 1, ap_memory, bottom_buf_11, array</column>
+<column name="bottom_buf_11_d0">out, 32, ap_memory, bottom_buf_11, array</column>
+<column name="bottom_buf_12_address0">out, 8, ap_memory, bottom_buf_12, array</column>
+<column name="bottom_buf_12_ce0">out, 1, ap_memory, bottom_buf_12, array</column>
+<column name="bottom_buf_12_we0">out, 1, ap_memory, bottom_buf_12, array</column>
+<column name="bottom_buf_12_d0">out, 32, ap_memory, bottom_buf_12, array</column>
+<column name="bottom_buf_13_address0">out, 8, ap_memory, bottom_buf_13, array</column>
+<column name="bottom_buf_13_ce0">out, 1, ap_memory, bottom_buf_13, array</column>
+<column name="bottom_buf_13_we0">out, 1, ap_memory, bottom_buf_13, array</column>
+<column name="bottom_buf_13_d0">out, 32, ap_memory, bottom_buf_13, array</column>
+<column name="bottom_buf_14_address0">out, 8, ap_memory, bottom_buf_14, array</column>
+<column name="bottom_buf_14_ce0">out, 1, ap_memory, bottom_buf_14, array</column>
+<column name="bottom_buf_14_we0">out, 1, ap_memory, bottom_buf_14, array</column>
+<column name="bottom_buf_14_d0">out, 32, ap_memory, bottom_buf_14, array</column>
+<column name="bottom_buf_15_address0">out, 8, ap_memory, bottom_buf_15, array</column>
+<column name="bottom_buf_15_ce0">out, 1, ap_memory, bottom_buf_15, array</column>
+<column name="bottom_buf_15_we0">out, 1, ap_memory, bottom_buf_15, array</column>
+<column name="bottom_buf_15_d0">out, 32, ap_memory, bottom_buf_15, array</column>
+<column name="layer">in, 4, ap_none, layer, scalar</column>
+</table>
+</item>
+</section>
+</profile>
