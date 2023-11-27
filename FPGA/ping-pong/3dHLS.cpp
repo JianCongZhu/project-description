@@ -156,17 +156,17 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
         selectLayer(load_flag, temp, center_buf0, top_buf0, bottom_buf0, j);
         buffer_load(load_flag, power_buf0, power + GRID_ROWS * GRID_COLS * j / 16);
         compute(compute_flag, result_buf2, center_buf2, top_buf2, bottom_buf2, power_buf2, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp);
-        buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * (j-2) / 16, result_buf1);
+        buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * (j - 2) / 16, result_buf1);
       } else if ((j % 3) == 1) {
         selectLayer(load_flag, temp, center_buf1, top_buf1, bottom_buf1, j);
         buffer_load(load_flag, power_buf1, power + GRID_ROWS * GRID_COLS * j / 16);
         compute(compute_flag, result_buf0, center_buf0, top_buf0, bottom_buf0, power_buf0, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp);
-        buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * (j-2) / 16, result_buf2);
+        buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * (j - 2) / 16, result_buf2);
       } else {
         selectLayer(load_flag, temp, center_buf2, top_buf2, bottom_buf2, j);
         buffer_load(load_flag, power_buf2, power + GRID_ROWS * GRID_COLS * j / 16);
         compute(compute_flag, result_buf1, center_buf1, top_buf1, bottom_buf1, power_buf1, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp);
-        buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * (j-2) / 16, result_buf0);
+        buffer_store(store_flag, result + GRID_ROWS * GRID_COLS * (j - 2) / 16, result_buf0);
       }
     }
     for (j = 0; j < LAYERS + 2; j++)
@@ -178,7 +178,7 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
       selectLayer(load_flag, result, center_buf0, top_buf0, bottom_buf0, j);
       buffer_load(load_flag, power_buf0, power + GRID_ROWS * GRID_COLS * j / 16);
       compute(compute_flag, result_buf2, center_buf2, top_buf2, bottom_buf2, power_buf2, cc, cn, cs, ce, cw, ct, cb, Cap, dt, amb_temp);
-      buffer_store(store_flag, temp + GRID_ROWS * GRID_COLS * j / 16, result_buf1);
+      buffer_store(store_flag, temp + GRID_ROWS * GRID_COLS * (j - 2) / 16, result_buf1);
       } else if ((j % 3) == 1) {
       selectLayer(load_flag, result, center_buf1, top_buf1, bottom_buf1, j);
       buffer_load(load_flag, power_buf1, power + GRID_ROWS * GRID_COLS * j / 16);

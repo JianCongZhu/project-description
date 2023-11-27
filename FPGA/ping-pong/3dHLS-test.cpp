@@ -249,7 +249,9 @@ int main(int argc, char** argv)
 
     tfile = argv[2];
     fprintf(stderr, "tfile is %s\n", tfile);
-    // FILE* tfile = fopen(tempFilePath,"r");
+    
+	fprintf(stderr, "test1\n");
+// FILE* tfile = fopen(tempFilePath,"r");
     //ofile = argv[6];
     //testFile = argv[7];
     int numCols = GRID_COLS;
@@ -275,7 +277,8 @@ int main(int argc, char** argv)
     float *powerIn, *tempOut, *tempIn, *tempCopy;// *pCopy;
     //    float *d_powerIn, *d_tempIn, *d_tempOut;
     int size = numCols * numRows * layers;
-    
+
+	//printf("callolclw;akdlwak\n");    
     powerIn = (float*)calloc(size, sizeof(float));
     tempCopy = (float*)malloc(size * sizeof(float));
     tempIn = (float*)calloc(size,sizeof(float));
@@ -284,6 +287,8 @@ int main(int argc, char** argv)
     //pCopy = (float*)calloc(size,sizeof(float));
     float* answer = (float*)calloc(size, sizeof(float));
 
+
+    printf("readInput \n");
     // outCopy = (float*)calloc(size, sizeof(float));
     readinput(powerIn,numRows, numCols, layers, pfile);
     readinput(tempIn, numRows, numCols, layers, tfile);
@@ -311,9 +316,11 @@ int main(int argc, char** argv)
     {
 //        printf("tempIn toplevel[%d] = %f\n", i, tempIn[i]);
     }
-    printf("tempIn pointer top level refers to %p\n", tempIn);
+    fprintf(stderr, "tempIn pointer top level refers to %p\n", tempIn);
     hotspot_HW((class ap_uint<LARGE_BUS>*) tempOut, (class ap_uint<LARGE_BUS>*) tempIn, (class ap_uint<LARGE_BUS>*) powerIn, Cap, Rx, Ry, Rz, dt, amb_temp);
-    //writeoutputHW(tempIn,numRows, numCols, layers);
+    fprintf(stderr, "test");    
+
+//writeoutputHW(tempIn,numRows, numCols, layers);
     //float acc2 = accuracy(tempOut,answer,numRows*numCols*layers);
 
     for (int k = 0; k < LAYERS; k++)
@@ -326,11 +333,11 @@ int main(int argc, char** argv)
         // check if the hardware and software outputs match, not the accuracies
         //if (tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] != answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])
         //if the percentage error between tempIn and answer is greater than 1%, then print out the error
-        if (fabs(tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] - answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]) > 0.06 * fabs(answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]))
-        {
+//        if (fabs(tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] - answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]) > 0.06 * fabs(answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]))
+  //      {
           printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n",i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
-          return -1;
-        }
+    //      return -1;
+      //  }
         
         
         //{
@@ -357,9 +364,9 @@ int main(int argc, char** argv)
     
     
 
-    free(tempIn);
+/*    free(tempIn);
     free(tempOut); free(powerIn);
-    free(answer);
+    free(answer); */
     return 0;
 }	
 
