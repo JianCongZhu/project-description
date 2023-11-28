@@ -159,13 +159,13 @@ void hotspot_HW(ap_uint<LARGE_BUS> result[GRID_COLS * GRID_ROWS * LAYERS], ap_ui
   #pragma HLS INTERFACE s_axilite port = dt bundle = control
   #pragma HLS INTERFACE s_axilite port = amb_temp bundle = control
   #pragma HLS INTERFACE s_axilite port = return bundle = control
-  fprintf(stderr, "start hotspot\n");
+  printf("start hotspot\n");
   // print out all the elements in the temp array
   for (int i = 0; i < GRID_ROWS * GRID_COLS * LAYERS; i++)
   {
     // printf("tempIn kernel[%d] = %f\n", i, temp[i]);
   }
-  fprintf(stderr, "tempIn pointer in kernel refers to %p\n", temp);
+  printf("tempIn pointer in kernel refers to %p\n", temp);
 
   int i, j;
   float cc, cn, cs, ce, cw, ct, cb;
