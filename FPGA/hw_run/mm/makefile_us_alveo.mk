@@ -135,7 +135,7 @@ ifeq ($(TARGET),$(filter $(TARGET),sw_emu hw_emu))
 	cp -rf $(EMCONFIG_DIR)/emconfig.json .
 	XCL_EMULATION_MODE=$(TARGET) $(EXECUTABLE) $(CMD_ARGS) $(POWER_PATH) $(TEMP_PATH)
 else
-	$(EXECUTABLE) $(CMD_ARGS)
+	$(EXECUTABLE) $(CMD_ARGS) $(POWER_PATH) $(TEMP_PATH)
 endif
 
 .PHONY: test

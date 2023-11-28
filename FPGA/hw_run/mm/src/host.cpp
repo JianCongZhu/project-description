@@ -34,7 +34,7 @@ Description:
 #define GRID_ROWS 64
 #define GRID_COLS 64
 #define LAYERS 8
-#define ITERATIONS 1000
+#define ITERATIONS 4000
 #define PARA_FACTOR 16
 
 #define STR_SIZE (256)
@@ -167,7 +167,7 @@ void computeTempCPU(std::vector<float, aligned_allocator<float>> &pIn, std::vect
                     // }
                 }
         // = tIn;
-        printf("copying values in software sum\n");
+        //printf("copying values in software sum\n");
         // tIn = tOut;
         // tOut = temp; 
         temp.assign(tIn.begin(), tIn.end());
@@ -176,7 +176,7 @@ void computeTempCPU(std::vector<float, aligned_allocator<float>> &pIn, std::vect
         // temp = tIn;
         // tIn = tOut;
         // tOut = temp;
-        printf("after copying values in software sum\n");
+        //printf("after copying values in software sum\n");
         // memcpy(temp,tIn.data(), size * sizeof(float));
         // memcpy(tIn,tOut.data(), size * sizeof(float));
         // memcpy(tOut,temp.data(), size * sizeof(float));
@@ -464,13 +464,13 @@ int main(int argc, char** argv) {
     printf("after computing software sum\n");
 
     //print out all of the answer values 
-    // for (int i = 0; i < size; i++){
-    //     std::cout << "answer[" << i << "] = " << answer[i] << std::endl;
-    // }
-    // // print out all of the tempIn values
-    // for (int i = 0; i < size; i++){
-    //     std::cout << "tempIn[" << i << "] = " << tempIn[i] << std::endl;
-    // }
+    //for (int i = 0; i < size; i++){
+    //    std::cout << "answer[" << i << "] = " << answer[i] << std::endl;
+    //}
+    // print out all of the tempIn values
+    //for (int i = 0; i < size; i++){
+    //    std::cout << "tempIn[" << i << "] = " << tempIn[i] << std::endl;
+    //}
     // std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
     // return (match ? EXIT_FAILURE : EXIT_SUCCESS);
     for (int k = 0; k < LAYERS; k++)
@@ -484,9 +484,14 @@ int main(int argc, char** argv) {
         // check if the hardware and software outputs match, not the accuracies
         //if (tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] != answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS])
         //if the percentage error between tempIn and answer is greater than 1%, then print out the error
-        if (fabs(tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] - answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]) > 0.07 * fabs(answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]))
+        if (fabs(tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS] - answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]) > 0.001 * fabs(answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]))
         {
           printf("Test failed. Results not matching at index %d: sw = %f, hw = %f\n", i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS , answer[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS], tempIn[i * GRID_COLS + j + k * GRID_ROWS * GRID_COLS]);
+          tempOut.clear();
+          tempIn.clear();
+          powerIn.clear();
+          tempCopy.clear();
+          answer.clear();
           return -1;
         }
         
@@ -500,6 +505,8 @@ int main(int argc, char** argv) {
         
 
       }
+    printf("tempIn[%d] is %f\n",size-1, tempIn[size-1]);
+    printf("answer[%d] is %f\n", size-1, answer[size-1]);
     printf("TEST PASSED!\n");
 
     // clear all vectors
